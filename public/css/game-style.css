@@ -10,6 +10,7 @@ body , html{
   :root {
     --cell-size: 50px;
     --mark-size: calc(var(--cell-size) * .7);
+    --cell--hover--color: #625a89;
     
   }
   .board {
@@ -36,4 +37,8 @@ body , html{
   .placed{
     cursor:not-allowed;
 
+  }
+  .cell:hover:not(.placed){
+    background-color: var(--cell--hover--color);
+    opacity: 0.8;
   }
