@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Teko:700);
-
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 :root{
      --border-color:#a8a8a8;
      --border-color-hover:#e9e9e9;
@@ -17,8 +17,8 @@
 
 .bg-video{
      position: fixed;
-     right: 0;
-     bottom: 0;
+     top: 0;
+     left: 0;
      min-width: 100%;
      min-height: 100%;
      opacity: 0.3;
@@ -31,15 +31,11 @@ header{
 
 
 .menu-container{
-     display: flex ;
-     justify-content: center;
-     flex-direction: column ;
-     align-items: center;
      height: 80vh;
 }
 
 
-.menu-btn{
+.menu-btn,.menu-btn:focus,.menu-btn:active{
     width: 30%;
     height: 13%;
     margin: 0.5rem;
@@ -48,12 +44,53 @@ header{
     outline: 2px solid var(--border-color);
     font-size: x-large;
     color:var(--btn-text-color);
-    transition: border 0.8s,outline-offset 0.8s,color 0.5s;
+    transition: border 0.5s,outline-offset 0.5s,color 0.5s;
 }
 
-.menu-btn:hover{
+.menu-btn:hover,.menu-btn:focus:hover{
      color: var(--btn-text-color-hover) !important;
      border:2px solid var(--border-color-hover);
      outline: 2px solid var(--border-color-hover);
      outline-offset: -13px;
+}
+
+
+
+.my-modal{
+     position: fixed;
+     top: 0;
+     left: 0;
+     background-color: rgba(0, 0, 0, 0.308);
+     width: 100%;
+     height: 100%;
+}
+
+
+.my-modal-body{
+     position: relative;
+     width: 25%;
+     height: 80%;
+     background-color: rgba(0, 0, 0, 0.644);
+}
+
+.exit-btn{
+     background-color: transparent;
+     border: 0;
+     position:absolute;
+     top: 0;
+     right: 0;
+}
+
+@media screen and (max-width:420px) {
+     .bg-video{
+     left:-200%
+     }
+     
+     .menu-btn,.menu-btn:hover,.menu-btn:focus:hover{
+          width: 50%;
+     }
+     .my-modal-body{
+          width: 100%;
+          height: 100%;
+     }
 }

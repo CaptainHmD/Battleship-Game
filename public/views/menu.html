@@ -26,18 +26,62 @@
     </header>
 
     <!-- Menu -->
-    <div class="menu-container">
+    <div class="menu-container d-flex justify-content-center flex-column align-items-center">
       <button class="menu-btn" onclick="window.location.href='./game'">
         Play
       </button>
-      <button class="menu-btn">Rules</button>
+      <button class="menu-btn" id="htp-btn">Rules</button>
       <button class="menu-btn">Credits</button>
     </div>
+
+
+
+    <!-- How to play modal -->
+    <!-- htp stands for how to play -->
+    <div class="my-modal d-flex justify-content-center align-items-center" id="htp-modal" style="display: none;">
+
+      <div class="my-modal-body">
+        <h1 class="text-light m-2">Rules</h1>
+        <ul class="text-light fs-3 mx-3">
+          <li class="">No cheating</li>
+          <li class="">Bot always wins</li>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+        </ul>
+
+        <p class="text-light fs-5 mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia animi necessitatibus iure veritatis labore nemo voluptate cumque totam ex ea.</p>
+
+        <button class="exit-btn m-3" id="exit-btn"> 
+          <i class="bi bi-x-lg text-light fs-2"></i>
+        </button>
+
+      </div>
+      
+    </div>
+       
+        
+
+     
+   
+
+
+
+
+
+
+
+
+
+
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+
+
+    <script src="../js/script-menu.js"></script>
+
   </body>
 </html>
