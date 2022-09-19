@@ -16,10 +16,15 @@ app.use(express.urlencoded({extended:true}))
 // built in middleware for json
 app.use(express.json());
 
-
+//! routes
 app.get('/', (req, res) => {
-  res.send('Hello Express app!')
+  res.sendFile(path.join('public','views','menu.html'),{root:root})
 });
+app.get('/game',(req,res)=>{
+  res.sendFile(path.join('public','views','game.html'),{root:root})
+
+})
+
 app.get('/test', (req, res) => {
    res.sendFile(path.join('public','views','index.html'),{root:root})
 });

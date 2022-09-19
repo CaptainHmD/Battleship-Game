@@ -1,0 +1,39 @@
+
+body , html{
+    background-color:#242132 ;
+    color: white;
+}
+*, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --cell-size: 50px;
+    --mark-size: calc(var(--cell-size) * .7);
+    
+  }
+  .board {
+    width: 70%;
+    height: 90vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(10, auto);
+    border: 3px solid red;
+  }
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1.5px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  .placed{
+    cursor:not-allowed;
+
+  }
