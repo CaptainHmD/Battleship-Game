@@ -16,13 +16,12 @@ body , html{
   .board {
     width: 70%;
     height: 90vh;
-    display: grid;
+    display: grid;  
     justify-content: center;
     align-content: center;
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(10, auto);
-    border: 3px solid red;
   }
   .cell {
     width: var(--cell-size);
@@ -40,5 +39,5 @@ body , html{
   }
   .cell:hover:not(.placed){
     background-color: var(--cell--hover--color);
-    opacity: 0.8;
+    opacity: 0.8; 
   }

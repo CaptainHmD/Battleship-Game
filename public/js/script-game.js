@@ -1,19 +1,52 @@
 
 const cells = document.querySelectorAll('[data-cell]');
+addEvent();
+function removeEvent() {
+    cells.forEach(cell => {
+        cell.removeEventListener('click', myClickHandler)
+    })
+}
 
-const gameLoop=cells.forEach(cell =>{
-    cell.addEventListener('click',(handler)=>{
-        console.log('clicked');
-        console.log(handler.currentTarget);
+function addEvent() {
+    cells.forEach(cell => {
+        cell.addEventListener('click', myClickHandler)
+    }
+    )
+}
 
-        const tar=handler.target;
-        tar.innerHTML='clicked'
-        place(tar)
-    },{once:true})
-})
-const place= (cell)=>{
+function EventTimeHandler() {
+    removeEvent();
+    setTimeout(() => {
+        addEvent();
+
+    }, 3000)
+
+}
+
+function myClickHandler(handler) {
+    console.log('clicked');
+    console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget))
+
+    const tar = handler.target;
+    tar.innerHTML = 'clicked'
+    place(tar)
+    EventTimeHandler();
+
+}
+
+
+
+
+
+
+
+const place = (cell) => {
     cell.classList.add('placed')
 
 }
 
-cells.item(2).innerHTML='here'
+//test
+var remove = false;
+
+
+cells.item(2).innerHTML = 'here'
