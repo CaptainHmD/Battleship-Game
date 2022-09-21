@@ -1,11 +1,46 @@
-const modal = document.getElementById("htp-modal")
-const btn = document.getElementById("htp-btn")
-const exitBtn = document.getElementById("exit-btn");
+const htp_modal = document.getElementById("htp-modal")
+const htp_btn = document.getElementById("htp-btn")
+const htp_exit_btn = document.getElementById("htp-exit-btn");
 
-btn.addEventListener("click", () => {
-     modal.classList.remove("visually-hidden")
-})
+const crdts_modal = document.getElementById("crdts-modal")
+const body = document.getElementById("modal-body")
+const crdts_btn = document.getElementById("crdts-btn")
+const crdts_exit_btn = document.getElementById("crdts-exit-btn")
+const crdts_exit_btn_sm = document.getElementById("crdts-exit-btn-sm")
 
-exitBtn.addEventListener("click", () => {
-    modal.classList.add("visually-hidden")
-})
+
+
+modalActions(htp_btn, htp_exit_btn, htp_modal);
+
+modalActions(crdts_btn, crdts_exit_btn, crdts_modal);
+modalActions(crdts_btn, crdts_exit_btn_sm, crdts_modal);
+
+
+
+
+//DRY DRY DRY
+
+function modalActions(button,exit_button, modal) {
+    openModal(button, modal);
+    closeModal(exit_button, modal);
+}
+
+
+function openModal(button, modal) {
+    button.addEventListener("click", () => {
+        modal.classList.remove("visually-hidden");
+        body.classList.add("slideup")
+    })
+}
+
+function closeModal(button,modal) {
+    button.addEventListener("click", () => {
+        modal.classList.add("visually-hidden");
+        body.classList.remove("slideup")
+    })
+}
+
+
+
+
+

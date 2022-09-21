@@ -15,9 +15,12 @@
   </head>
   <body class="bg-dark">
     <!-- Video Background -->
-    <video autoplay muted loop class="bg-video">
-      <source src="../Resources/vidoes/trimm.mp4" type="video/mp4" />
-    </video>
+
+      <video autoplay muted loop class="bg-video">
+        <source src="../Resources/vidoes/trimm.mp4" type="video/mp4" />
+      </video>
+      
+    
 
     <!-- Header -->
 
@@ -31,14 +34,14 @@
         Play
       </button>
       <button class="menu-btn" id="htp-btn">Rules</button>
-      <button class="menu-btn">Credits</button>
+      <button class="menu-btn" id="crdts-btn">Credits</button>
     </div>
 
 
 
     <!-- How to play modal -->
     <!-- htp stands for how to play -->
-    <div class="my-modal d-flex justify-content-center align-items-center" id="htp-modal" style="display: none;">
+    <div class="my-modal d-flex justify-content-center align-items-center visually-hidden" id="htp-modal">
 
       <div class="my-modal-body">
         <h1 class="text-light m-2">Rules</h1>
@@ -51,7 +54,7 @@
 
         <p class="text-light fs-5 mx-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia animi necessitatibus iure veritatis labore nemo voluptate cumque totam ex ea.</p>
 
-        <button class="exit-btn m-3" id="exit-btn"> 
+        <button class="exit-btn m-3" id="htp-exit-btn"> 
           <i class="bi bi-x-lg text-light fs-2"></i>
         </button>
 
@@ -59,6 +62,40 @@
       
     </div>
        
+
+
+    <div class="my-modal visually-hidden" id="crdts-modal">
+      <div class="my-modal-body overflow-auto" id="modal-body">
+        <h1 class="text-light m-4">Rules</h1>
+        <ul class="text-light mx-4">
+          <li class="">No cheating</li>
+          <li class="">Bot always wins</li>
+          <li>Lorem ipsum dolor sit.</li>
+          <li>Lorem ipsum dolor sit.</li>
+        </ul>
+
+        <p class="text-light fs-5 mx-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor voluptates, rem, tenetur, sapiente commodi ipsa facilis autem quasi asperiores perferendis labore nihil animi veritatis? Fuga officiis vel, ipsum in rem suscipit beatae corrupti deleniti atque, at doloribus exercitationem quis laborum voluptatem dolor hic quibusdam accusantium asperiores dolore. Consectetur, quas officia.</p>
+
+
+        <!-- This button will be displayed only on large devices -->
+        <button class="d-none d-md-block exit-btn m-2" id="crdts-exit-btn"> 
+          <i class="bi bi-x-lg text-light fs-2"></i>
+        </button>
+
+
+        <!-- This button will be displayed only on small devices -->
+       <div class="d-flex justify-content-center">
+
+         <button class="sm-close-btn d-flex d-md-none text-light" id="crdts-exit-btn-sm">CLOSE</button>
+        </div> 
+         
+      </div>
+
+
+
+    </div>  
+
+    
         
 
      
