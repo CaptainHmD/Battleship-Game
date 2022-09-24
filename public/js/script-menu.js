@@ -28,17 +28,26 @@ function modalActions(button,exit_button, modal) {
 
 function openModal(button, modal) {
     button.addEventListener("click", () => {
+        body.classList.remove("slideDown")
         modal.classList.remove("visually-hidden");
-        body.classList.add("slideup")
+        body.classList.add("slideUp")
     })
 }
 
 function closeModal(button,modal) {
     button.addEventListener("click", () => {
-        modal.classList.add("visually-hidden");
-        body.classList.remove("slideup")
+        body.classList.remove("slideUp")
+        body.classList.add("slideDown")
     })
+    body.addEventListener("animationend", () => {
+        if(body.classList.contains("slideDown"))
+        modal.classList.add("visually-hidden")  
+    })  
+    
+    
 }
+
+
 
 
 

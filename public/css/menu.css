@@ -60,7 +60,6 @@ header{
 
 
 .my-modal{
-     
      position: fixed;
      top: 0;
      left: 0;
@@ -70,6 +69,8 @@ header{
      display: flex;
      justify-content: center;
      align-items: center;
+     overflow: hidden;
+
 }
 
 
@@ -78,6 +79,7 @@ header{
      width: 25%;
      height: 80%;
      background-color: rgba(0, 0, 0, 0.644);
+     overflow: hidden;
 }
 
 .exit-btn{
@@ -110,20 +112,39 @@ header{
      }
 }
 
-.slideup{
-     animation-name:slideup;
-     animation-duration: 1s;
+.slideDown{
+     animation-name: slideDown;
+     animation-duration: 750ms;
      animation-fill-mode: forwards;
 }
 
-@keyframes slideup {
+.slideUp{
+     animation-name:slide;
+     animation-duration: 750ms;
+     animation-fill-mode: forwards;
+     
+}
+
+@keyframes slide{
      from{
-         height: 0;
-         
+         top:100%;
+     
      }
      to{
-          height: 85%;
-          overflow: auto;
+          top:0;
+          
+          
+     }
+}
+
+@keyframes slideDown{
+     from{
+         top:0;
+     
+     }
+     to{
+          top:100%;
+          
           
      }
 }
@@ -139,11 +160,8 @@ header{
           align-items: flex-end;
      }
      .my-modal-body{
-          
           width: 100%;
-          height: 0%;
-          background-color: black;
-
+          height: 100%;
      }
 
 
