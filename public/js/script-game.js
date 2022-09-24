@@ -1,12 +1,7 @@
 
 const cells = document.querySelectorAll('[data-cell]');
 addEvent();
-function removeEvent() {
-    cells.forEach(cell => {
-        cell.removeEventListener('click', myClickHandler)
-    })
-}
-
+const EventDelay = 2000;
 function addEvent() {
     cells.forEach(cell => {
         cell.addEventListener('click', myClickHandler)
@@ -14,14 +9,13 @@ function addEvent() {
     )
 }
 
-function EventTimeHandler() {
-    removeEvent();
-    setTimeout(() => {
-        addEvent();
-
-    }, 3000)
-
+function removeEvent() {
+    cells.forEach(cell => {
+        cell.removeEventListener('click', myClickHandler)
+    })
 }
+
+
 
 function myClickHandler(handler) {
     console.log('clicked');
@@ -34,19 +28,20 @@ function myClickHandler(handler) {
 
 }
 
+function EventTimeHandler() {
+    removeEvent();
+    setTimeout(() => {
+        addEvent();
 
+    }, EventDelay)
 
-
-
-
+}
 
 const place = (cell) => {
     cell.classList.add('placed')
 
 }
 
-//test
-var remove = false;
 
 
 cells.item(2).innerHTML = 'here'
