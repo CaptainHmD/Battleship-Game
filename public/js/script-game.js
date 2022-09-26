@@ -16,12 +16,14 @@ function removeEvent() {
 }
 
 
-
 function myClickHandler(handler) {
+    const tar = handler.target;
+
+    if (tar.classList.contains('placed')) { // if the cell was clicked  don`t do anything
+        return;
+    }
     console.log('clicked');
     console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget))
-
-    const tar = handler.target;
     tar.innerHTML = 'clicked'
     place(tar)
     EventTimeHandler();

@@ -8,11 +8,11 @@ body , html{
   }
   
   :root {
-    --cell-size: 50px;
+    --cell-size: 40px;
     --mark-size: calc(var(--cell-size) * .7);
     --cell--hover--color: #625a89;
-    
-  }
+    --cell--background--color: rgb(4, 118, 217);
+      }
   .board {
     min-width: fit-content;
     max-width: fit-content;
@@ -37,12 +37,45 @@ body , html{
     align-items: center;
     position: relative;
     cursor: pointer;
+    background-color: var(--cell--background--color);
   }
   .placed{
     cursor:not-allowed;
-
+  background-color: red;
   }
   .cell:hover:not(.placed){
     background-color: var(--cell--hover--color);
     opacity: 0.8; 
   }
+.flex-display {
+    display: flex;
+    flex-direction: column;
+    background-color: #625a89;
+}
+.ship{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1vmin;
+  width: calc(var(--cell-size)*var(--width,1));
+  height: calc(var(--cell-size)*0.9);
+  border-radius: 2.3vmin;
+  background-color: gray;
+}
+.small-ship{
+  background-color: red;
+--width:2;
+}
+.medium-ship{
+  background-color: blue;
+  --width:3;
+}
+.larg-ship{
+  background-color: greenyellow;
+  --width:4;
+
+}
+.massive-ship{
+  background-color: gainsboro;
+  --width:5;
+
+}
