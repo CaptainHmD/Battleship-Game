@@ -1,55 +1,49 @@
-const htp_modal = document.getElementById("htp-modal")
-const htp_btn = document.getElementById("htp-btn")
-const htp_exit_btn = document.getElementById("htp-exit-btn");
 
-const crdts_modal = document.getElementById("crdts-modal")
-const body = document.getElementById("modal-body")
-const crdts_btn = document.getElementById("crdts-btn")
-const crdts_exit_btn = document.getElementById("crdts-exit-btn")
-const crdts_exit_btn_sm = document.getElementById("crdts-exit-btn-sm")
+let currModal = {};
 
-
-
-modalActions(htp_btn, htp_exit_btn, htp_modal);
-
-modalActions(crdts_btn, crdts_exit_btn, crdts_modal);
-modalActions(crdts_btn, crdts_exit_btn_sm, crdts_modal);
-
-
-
-
-//DRY DRY DRY
-
-function modalActions(button,exit_button, modal) {
-    openModal(button, modal);
-    closeModal(exit_button, modal);
+console.log("GGG");
+function init(name) {
+    currModal = {
+        "modal": document.getElementById(`${name}-modal`),
+        "btn": document.getElementById(`${name}-btn`),
+        "exitBtn": document.getElementById(`${name}-exit-btn`),
+        "body": document.getElementById(`${name}-modal-body`),
+    }
+    openModal(currModal['exitBtn'], currModal['modal'], currModal['body']);
 }
 
 
-function openModal(button, modal) {
-    button.addEventListener("click", () => {
-        body.classList.remove("slideDown")
-        modal.classList.remove("visually-hidden");
-        body.classList.add("slideUp")
-    })
+
+function openModal(exit_button, modal, body) {
+    modal.focus()
+    body.classList.remove("slideDown")
+    modal.classList.remove("visually-hidden");
+    body.classList.add("slideUp")
+    closeModal(exit_button, modal, body);
 }
 
-function closeModal(button,modal) {
-    button.addEventListener("click", () => {
+
+
+function closeModal(button, modal, body) {
+    
+    const close = () => {
         body.classList.remove("slideUp")
         body.classList.add("slideDown")
+        setTimeout(() => {
+            modal.classList.add("visually-hidden")
+        },150)
+    }
+
+
+    button.addEventListener('click', () => {
+        close();
     })
-    body.addEventListener("animationend", () => {
-        if(body.classList.contains("slideDown"))
-        modal.classList.add("visually-hidden")  
-    })  
+    document.body.addEventListener('keydown', (event) => {
+        if (event.key === "Escape")
+            close();
+    })
     
-    
+
 }
-
-
-
-
-
 
 

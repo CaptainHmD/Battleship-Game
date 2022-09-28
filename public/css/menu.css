@@ -63,7 +63,7 @@ header{
      position: fixed;
      top: 0;
      left: 0;
-     background-color: rgba(0, 0, 0, 0.308);
+     background-color: rgba(0, 0, 0, 0.438);
      width: 100%;
      height: 100%;
      display: flex;
@@ -76,19 +76,55 @@ header{
 
 .my-modal-body{
      position: relative;
-     width: 25%;
-     height: 80%;
-     background-color: rgba(0, 0, 0, 0.644);
+     width: 26%;
+     height: 65%;
+     border-radius:2%;
+     background-color: rgb(10, 10, 10);
      overflow: hidden;
+}
+
+.modal-title{
+     position: relative;
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-end !important;
+     padding: 4%;
+}
+
+.modal-header-text{
+     font-size: 2em !important;
+}
+
+hr{
+     margin:auto;
+     width: 80%;
+     border:2px solid #707070 !important;
+     opacity: 1 !important;
+     border-radius:30px;
+     
+     /* border:5px solid rgb(255, 0, 0) !important; */
+}
+
+li{
+     font-size: 1.2rem;
+     font-weight: 550;
+     margin:4% 0;
 }
 
 .exit-btn{
      background-color: transparent;
      border: 0;
-     position:absolute;
-     top: 0;
-     right: 0;
+
 }
+
+.exit-btn i{
+     transition: color 0.5s;
+}
+
+.exit-btn i:hover{
+    color:var(--border-color) !important;
+}
+
 
 .sm-close-btn{
      margin-top:5%;
@@ -110,11 +146,14 @@ header{
           width: 70%;
           height: 80%;
      }
+     .modal-header-text{
+          font-size: 3rem;
+     }
 }
 
 .slideDown{
      animation-name: slideDown;
-     animation-duration: 750ms;
+     animation-duration: 350ms;
      animation-fill-mode: forwards;
 }
 
@@ -162,7 +201,9 @@ header{
      .my-modal-body{
           width: 100%;
           height: 100%;
+          border-radius: 0;
      }
+
 
 
 
