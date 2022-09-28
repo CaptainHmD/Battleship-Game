@@ -1,5 +1,4 @@
 const express = require('express');
-<<<<<<< HEAD
 const path = require('path')
 const app = express();
 const root = path.join(__dirname);
@@ -35,15 +34,4 @@ app.get('/rules', (req, res) => {
 
 app.listen(PORT, () => {
   console.log('server is listing on Port: ', PORT);
-=======
-
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello Express app!')
-});
-
-app.listen(3000, () => {
-  console.log('server started');
->>>>>>> 8cc3848 (remote replit)
 });
