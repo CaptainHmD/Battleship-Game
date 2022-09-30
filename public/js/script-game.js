@@ -1,5 +1,18 @@
 
+const board = document.querySelector('#board'); //! game board
+function createBoard () {
+    for(let i = 0 ; i < 100; i ++){
+        const cell =  document.createElement('div');
+        cell.setAttribute('class','cell');
+        cell.setAttribute('data-cell','')
+        board.appendChild(cell);
+
+    }
+}
+createBoard();
+
 const cells = document.querySelectorAll('[data-cell]');
+
 addEvent();
 const EventDelay = 2000;
 function addEvent() {
@@ -50,7 +63,7 @@ cells.item(2).innerHTML = 'here'
 
 //const cells = document.querySelectorAll('[data-cell]');
 
-const board = document.querySelector('#board'); //! game board
+// const board = document.querySelector('#board'); //! game board
 
 
 const dragAbles = document.querySelectorAll('.drag')
@@ -66,7 +79,7 @@ dragAbles.forEach(ships => {
         console.log(ship.target);
 
     })
-    ships.addEventListener('mousedown',handler=>{
+    ships.addEventListener('mousedown', handler => {
         console.log('click:\t', (handler.target.id).split('-')[1]); //! for knowing where is the parts the has been clicked
         // console.log(Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget));
 

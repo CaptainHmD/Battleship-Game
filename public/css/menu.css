@@ -101,8 +101,8 @@ header{
 .my-modal-body{
      position: relative;
      width: 26%;
-     min-height: 60%;
-     max-height: 65%;
+     min-height: 63%;
+     max-height: 68%;
      border-radius:2%;
      background-color: rgb(10, 10, 10);
 }
