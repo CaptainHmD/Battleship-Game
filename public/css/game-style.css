@@ -1,143 +1,140 @@
-
-body , html{
-    background-color:#242132 ;
-    color: white;
-    z-index: -3;
-
+body,
+html {
+  background-color: #242132;
+  color: white;
+  z-index: -3;
 }
-*, *::after, *::before {
-    box-sizing: border-box;
-  }
-  
-  :root {
-    --cell-size: 40px;
-    --mark-size: calc(var(--cell-size) * .7);
-    --cell--hover--color: #625a89;
-    --cell--background--color: rgb(4, 118, 217);
-    --border--radius: 2.3vmin;
-      }
-  .board {
-    min-width: fit-content;
-    max-width: fit-content;
-    min-height: fit-content;
-    max-height: fit-content;
-    display: grid;  
-    grid-template-columns: repeat(10, auto);
-    border:1px solid red;
-    z-index: 1;
-    background-color: var(--cell--background--color) !important;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
 
-  }
-  .cell {
-    width: var(--cell-size);
-    height: var(--cell-size);
-    border: 1.5px solid white;
-    display: flex;
-    justify-content: center; /*col*/
-    align-items: center;/*row*/
-    position: relative;
-    cursor: pointer;
-  }
-  .placed{
-    cursor:not-allowed;
-    background-color: red; /*debugging*/
-  }
-  .cell:hover:not(.placed){
-    background-color: var(--cell--hover--color);
-    opacity: 0.8; 
-  }
+:root {
+  --cell-size: 40px;
+  --mark-size: calc(var(--cell-size) * 0.7);
+  --cell--hover--color: #625a89;
+  --cell--background--color: rgb(4, 118, 217);
+  --border--radius: 2.3vmin;
+}
+.board {
+  min-width: fit-content;
+  max-width: fit-content;
+  min-height: fit-content;
+  max-height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  border: 1px solid red;
+  z-index: 1;
+  background-color: var(--cell--background--color) !important;
+  padding: 0;
+}
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1.5px solid white;
+  display: flex;
+  justify-content: center; /*col*/
+  align-items: center; /*row*/
+  position: relative;
+  cursor: pointer;
+}
+.placed {
+  cursor: not-allowed;
+  background-color: red; /*debugging*/
+}
+.cell:hover:not(.placed) {
+  background-color: var(--cell--hover--color);
+  opacity: 0.8;
+}
 
 .flex-display {
-    display: flex;
-    flex-direction: column;
-    background-color: #625a89;
+  display: flex;
+  flex-direction: column;
+  background-color: #625a89;
 }
 
-.ship{
+.ship {
   display: flex;
   flex-wrap: wrap;
   margin: 1vmin;
-  width: calc(var(--cell-size)*var(--width));
-  height: calc(var(--cell-size)*0.9);
-  /* border-bottom-left-radius: 2.3vmin; */
-  
-  /* background-color: gray; */
+  width: calc(var(--cell-size) * var(--width));
+  height: calc(var(--cell-size) * 0.9);
 }
-.small-ship{
-  /* background-color: red; */
---width:2;
+.small-ship {
+  --width: 2;
 }
-.medium-ship{
-  /* background-color: blue; */
-  --width:3;
+.medium-ship {
+  --width: 3;
 }
-.larg-ship{
-  /* background-color: greenyellow; */
-  --width:4;
-
+.larg-ship {
+  --width: 4;
 }
-.massive-ship{
-  /* background-color: gainsboro; */
-  --width:5;
+.massive-ship {
+  --width: 5;
 }
 
-.start{
+.start {
   border-bottom-left-radius: var(--border--radius);
   border-top-left-radius: var(--border--radius);
-
 }
-.end{
-  border-bottom-right-radius:var(--border--radius);
+.end {
+  border-bottom-right-radius: var(--border--radius);
   border-top-right-radius: var(--border--radius);
 }
 
-
 .flex-display div:not(.ship) {
   width: var(--cell-size);
-  height: calc(var(--cell-size)*0.9);;
+  height: calc(var(--cell-size) * 0.9);
   background-color: #e8e3ff;
   border: none;
 }
 
-#small-0{
-  background-color: #7153fa  ;
-}
-#small-1{
-  background-color: #7153fa ; 
-}
-#medium-0{
-  background-color: #242132;
-}
-#medium-1{
+#small-0 {
   background-color: #7153fa;
 }
-#medium-2{
-  background-color: #e8e3ff;
-}
-#larg-0{
-  background-color: #242132;
-}
-#larg-1{
+#small-1 {
   background-color: #7153fa;
 }
-#larg-2{
+#medium-0 {
+  background-color: #242132;
+}
+#medium-1 {
+  background-color: #7153fa;
+}
+#medium-2 {
   background-color: #e8e3ff;
 }
-#larg-3{
+#larg-0 {
+  background-color: #242132;
+}
+#larg-1 {
+  background-color: #7153fa;
+}
+#larg-2 {
+  background-color: #e8e3ff;
+}
+#larg-3 {
   background-color: #00b844;
 }
-#massive-0{
+#massive-0 {
   background-color: #242132;
 }
-#massive-1{
+#massive-1 {
   background-color: #7153fa;
 }
-#massive-2{
+#massive-2 {
   background-color: #e8e3ff;
 }
-#massive-3{
+#massive-3 {
   background-color: #00b844;
 }
-#massive-4{
+#massive-4 {
   background-color: #ff1616;
+}
+.ship-placed {
+  width: var(--cell-size);
+  height: calc(var(--cell-size));
+  background-color: #ff1616;
+  border: none !important;
 }
