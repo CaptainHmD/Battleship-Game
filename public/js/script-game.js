@@ -10,12 +10,12 @@ var numberOfTheShipPart;
 const EventDelay = 1000;
 const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99]
 const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
-
-const notAllowedVertical = [90,]
+var cellTarget;
+// const notAllowedVertical = [90,]
 
 addEvents();
 
-
+//!  remove it when you finish
 // document.addEventListener("dragover", function(event) {
 //     event.preventDefault();
 //   });
@@ -64,11 +64,12 @@ function myClickHandler(handler) {
 function EventTimeHandler() {
     removeEvent();
     setTimeout(() => {
-        addEvent();
+        addEvents();
     }, EventDelay)
 }
 const place = (cell) => {cell.classList.add('placed')}
 
+//! ships
 dragAbles.forEach(ships => {
     ships.addEventListener('dragstart', ship => {onDragStart(ship, ships)})
     ships.addEventListener('dragend', onDragEnd(ships))
@@ -86,25 +87,62 @@ function onDragEnd(ships) {
 }
 
 function onMouseDown(handler) {
-    shipSize = (handler.target.id).split('-')[0];
-    numberOfTheShipPart = (handler.target.id).split('-')[1]
+    console.log(handler.target);
+    cellTarget=handler.target;
+    shipSize = (handler.target.id).split('-')[0]
+    numberOfTheShipPart = parseInt((handler.target.id).split('-')[1])
     console.log('size:\t', shipSize); //* for knowing what is the size of the ship that has been clicked
     console.log('click:\t', numberOfTheShipPart); //* for knowing where is the parts the has been clicked
 }
 
 
 
-
+ //! cells
 cells.forEach(cell => {
-    cell.addEventListener('dragover', dragOverTheCells)
-    cell.addEventListener('drop', addShipsIntoCells, true)
+    cell.addEventListener('dragover', dragOverTheCells) //* 1
+    cell.addEventListener('drop', addShipsIntoCells, true) //* 2
 })//! end of cells foreach for cells
 
 
+function dragOverTheCells(handler) { //* 1
 
-function addShipsIntoCells(ship) {
+    handler.preventDefault()// cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
+    // console.log(handler);
+    if (handler.target.classList.contains('placed')) { // any cells that have placed class 
+        // console.log('tar\n\n', handler.target.classList.contains('placed'));
+    }
+    lastCellHover = Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)
+    // console.log(lastCellHover);
+} // end of dragOverTheCells
+
+
+/*
+const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99]
+const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+*/
+
+// var cellTarget;
+//! (shipParts) number of all parts in the ship that been clicked on 
+//! (lastCellHover)  number of cell that user was hover on
+//! (numberOfTheShipPart) what is the part of the ship that user clicked on
+//! (shipSize) ship size (: but in text
+function addShipsIntoCells(ship) { //* 2
     console.log('drop');
-    console.log(ship.target);
+    console.log('lastCellHover: ',lastCellHover);
+    console.log('shipParts: ',shipParts);
+    console.log('numberOfTheShipPart: ',numberOfTheShipPart);
+    console.log('shipSize ', shipSize);
+    
+    //TODO: conditions for the invalid drop cells
+    if(invalidCellsAtTheEnd()){return}
+    if(invalidCellsAtTheStart()){return}
+    if (invalidCellsBetweenTheFirstAndTheLast()) {return}
+    
+
+
+
+
+//! need to fix ):
     for (let i = 0; i < shipParts; i++) {
         if (i === 0) {
             cells.item(lastCellHover).classList.add('start')
@@ -122,13 +160,33 @@ function addShipsIntoCells(ship) {
 }//end of addShipsIntoCells
 
 
-function dragOverTheCells(handler) {
 
-    handler.preventDefault()// cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
-    // console.log(handler);
-    if (handler.target.classList.contains('placed')) { // any cells that have placed class 
-        // console.log('tar\n\n', handler.target.classList.contains('placed'));
+
+
+//! conditions functions
+
+function invalidCellsAtTheEnd() {
+    if (numberOfTheShipPart===0) {
+        const conflict =notAllowedHorizontalOnEnd.filter((handler)=>{return handler===lastCellHover;}) // if the user clicked on the fist part of the ships , and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnEnd array , ignore it
+        if(conflict.length===1){return true}; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
     }
-    lastCellHover = Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)
-    // console.log(lastCellHover);
-} // end of dragOverTheCells
+    return false;
+}
+function invalidCellsAtTheStart() {
+    if (numberOfTheShipPart!==0) {
+        const conflict =notAllowedHorizontalOnEStart.filter((handler)=>{return handler===lastCellHover;}) // if the user clicked on the any parts of the ships but not the first part, and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnStart array , ignore it
+        if(conflict.length===1){return true}; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
+    }
+    return false;
+}
+function invalidCellsBetweenTheFirstAndTheLast(){
+    if (!cellTarget.classList.contains('end')&&!cellTarget.classList.contains('start')) {
+        const firstConflict = notAllowedHorizontalOnEnd.filter((handler)=>{return lastCellHover===handler}) // this will check for the invalid cells at the end of the board, if found it will return it , so the length will be 1 , now i can check for length
+        const secondConflict = notAllowedHorizontalOnEnd.filter((handler)=>{return lastCellHover===handler})// this will check for the invalid cells  at the start of the board, if found it will return it , so the length will be 1 , now i can check for length
+        if (firstConflict.length===1||secondConflict.length===1) { //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
+            return true
+        }
+        
+    }
+    return false;
+}
