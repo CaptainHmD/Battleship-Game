@@ -8,8 +8,8 @@ var lastCellHover; //!
 var shipSize; //!
 var numberOfTheShipPart;
 const EventDelay = 1000;
-const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99]
-const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
+const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
 var cellTarget;
 // const notAllowedVertical = [90,]
 
@@ -142,12 +142,10 @@ function addShipsIntoCells(ship) { //* 2
 
 
 
-//! need to fix ):
     for (let i = 0; i < shipParts; i++) {
         if (i === 0) {
+            lastCellHover=lastCellHover-numberOfTheShipPart; // this will put some parts of the ship behind the users click, if and only if he didn't click on the first part of the ships
             cells.item(lastCellHover).classList.add('start')
-            cells.item(lastCellHover).classList.add('placed')
-
         } else if (i === (shipParts - 1)) {
             cells.item(lastCellHover + i).classList.add('end')
         }
