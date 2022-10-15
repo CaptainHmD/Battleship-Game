@@ -14,6 +14,28 @@
 </head>
 
 <body>
+
+
+  <div class="d-flex justify-content-center">
+    <div class="scoreboard mt-3">
+      <div class="score-info-container text-info">
+        <i class=" bi bi-person-fill"></i>
+        <h2>player 1</h2>
+      </div>
+
+      <!--HAMAD-->
+      <div class="score-info-container text-dark">
+        <i class="bi bi-stopwatch"></i>
+        <h1>5:00</h1>
+      </div>
+      
+      <div class="score-info-container text-danger">
+        <i class="bi bi-cpu-fill"></i>
+        <h2 class="">NPC</h2>
+      </div>
+    
+    </div>
+  </div>
   <div class="container">
     <div class="row justify-content-center mt-5">
       <div class="board" id="board">
@@ -120,8 +142,8 @@
       </div>
     </div> <!--row-->
     <div class="row">
-      <div class="container">
-      <div class="flex-display">
+      <div class="container d-flex justify-content-center">
+      <div class="flex-display mt-3">
         <div class="ship small-ship drag" draggable="true"><div id="small-0"class="start"></div><div id="small-1"class="end"></div></div>
         <div class="ship medium-ship drag" draggable="true"><div id="medium-0"class="start" start></div><div id="medium-1"></div><div id="medium-2"class="end"></div></div>
         <div class="ship larg-ship drag" draggable="true"><div id="larg-0"class="start"></div><div id="larg-1"></div><div id="larg-2"></div><div id="larg-3"class="larg end"></div></div>
@@ -131,6 +153,17 @@
         
     </div>
   </div> <!--Container-->
+
+
+
+  <!--username modal-->
+  <!-- <div class="username-modal position-absolute start-50 top-50 translate-middle">
+    <h1 class="text-light">Please Enter your username</h1>
+    <div class="input-field d-flex">
+      <input class="text-light fs-3 border rounded" type="text" name="" id="username">
+      <button class="confirm-username text-light fs-3 border rounded border-success">Confirm</button>
+    </div>
+  </div> -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
