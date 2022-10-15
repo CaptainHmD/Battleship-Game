@@ -7,6 +7,10 @@
      --btn-text-color-hover:var(--border-color-hover)
 }
 
+body,html{
+     overflow: hidden;
+}
+
 *,*::after,*::before{
      margin: 0;
      padding: 0;
@@ -103,7 +107,7 @@ header{
      width: 26%;
      min-height: 63%;
      max-height: 68%;
-     border-radius:2%;
+     border-radius:30px;
      background-color: rgb(10, 10, 10);
 }
 
@@ -136,6 +140,25 @@ header{
     color:var(--border-color) !important;
 }
 
+
+
+
+
+
+@media screen and (max-width:1250px) {
+
+     .menu-btn,.menu-btn:hover,.menu-btn:focus:hover{
+          width: 40%;
+     }
+     .my-modal-body{
+          width: 40%;
+          height: 80%;
+          max-height: 80%;
+     }
+     .modal-header-text{
+          font-size: 3rem;
+     }
+}
 
 
 
