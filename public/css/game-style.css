@@ -24,7 +24,7 @@ html {
   max-height: fit-content;
   display: grid;
   grid-template-columns: repeat(10, auto);
-  border: 1px solid red;
+  border: 1px solid white;
   z-index: 1;
   background-color: var(--cell--background--color) !important;
   padding: 0;

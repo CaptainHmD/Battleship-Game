@@ -9,7 +9,7 @@ var shipSize; //!
 var numberOfTheShipPart;
 const EventDelay = 1000;
 const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
-const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100];
 var cellTarget;
 // const notAllowedVertical = [90,]
 
@@ -134,10 +134,11 @@ function addShipsIntoCells(ship) { //* 2
     console.log('shipSize ', shipSize);
     
     //TODO: conditions for the invalid drop cells
-    if(invalidCellsAtTheEnd()){return}
-    if(invalidCellsAtTheStart()){return}
-    if (invalidCellsBetweenTheFirstAndTheLast()) {return}
-    
+    if(invalidCellsAtTheEnd())return
+    if(invalidCellsAtTheStart())return
+    if (invalidCellsBetweenTheFirstAndTheLast())return
+    if (invalidRightMiddleCell())return
+    if(invalidLeftMiddleCell())return
 
 
 
@@ -185,6 +186,33 @@ function invalidCellsBetweenTheFirstAndTheLast(){
             return true
         }
         
+    }
+    return false;
+}
+
+//! requirement ship size |||  numberOfTheShipPart
+function invalidRightMiddleCell(){
+    if(numberOfTheShipPart===0)return false;
+
+    let tempLastCellHover = lastCellHover
+    let findConflict;
+    for (let i = 0; i < shipParts - numberOfTheShipPart; i++) {
+        findConflict = notAllowedHorizontalOnEStart.some((handler) => {return handler === tempLastCellHover}) // if an invalid cell spot was detected, return true.
+        if(findConflict===true)return findConflict; // return if we have conflict or invalid cell
+        tempLastCellHover++
+    }
+    return false;
+}
+
+
+function invalidLeftMiddleCell(){
+    let tempLastCellHover = lastCellHover
+    let findConflict;
+    for (let i = 0; i < numberOfTheShipPart+1; i++) {
+        findConflict = notAllowedHorizontalOnEnd.some((handler) => {
+            return handler === tempLastCellHover}) // if an invalid cell spot was detected, return true.
+        if(findConflict===true)return findConflict; // return if we have conflict or invalid cell
+        tempLastCellHover--
     }
     return false;
 }
