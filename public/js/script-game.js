@@ -189,8 +189,7 @@ function invalidCellsBetweenTheFirstAndTheLast(){
 
 //! requirement ship size |||  numberOfTheShipPart
 function invalidRightMiddleCell(){
-    if(numberOfTheShipPart===0)return false;
-
+    if(numberOfTheShipPart===0 && notAllowedHorizontalOnEStart.includes(lastCellHover))return false; //!  numberOfTheShipPart===0 and user clicked on 0-10-20-30,,, then it`s valid
     let tempLastCellHover = lastCellHover
     let findConflict;
     for (let i = 0; i < shipParts - numberOfTheShipPart; i++) {
@@ -203,13 +202,11 @@ function invalidRightMiddleCell(){
 
 
 function invalidLeftMiddleCell(){
-    if(shipParts===numberOfTheShipPart+1)return false 
-
+    if(shipParts===numberOfTheShipPart+1 && notAllowedHorizontalOnEnd.includes(lastCellHover))return false //!fix .. shipParts===numberOfTheShipPart+1 and user clicked on 9-19-29-39,,,, then it`s valid
     let tempLastCellHover = lastCellHover
     let findConflict;
     for (let i = 0; i < numberOfTheShipPart+1; i++) {
-        findConflict = notAllowedHorizontalOnEnd.some((handler) => {
-            return handler === tempLastCellHover}) // if an invalid cell spot was detected, return true.
+        findConflict = notAllowedHorizontalOnEnd.some((handler) => {return handler === tempLastCellHover}) // if an invalid cell spot was detected, return true.
         if(findConflict===true)return findConflict; // return if we have conflict or invalid cell
         tempLastCellHover--
     }
