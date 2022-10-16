@@ -10,18 +10,11 @@ var numberOfTheShipPart;
 const EventDelay = 1000;
 const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100];
+const shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
 var cellTarget;
 // const notAllowedVertical = [90,]
-
 addEvents();
 
-//!  remove it when you finish
-// document.addEventListener("dragover", function(event) {
-//     event.preventDefault();
-//   });
-// document.addEventListener("drop", function(event) {
-//     event.preventDefault();
-//   });
 
 function createBoard() {
     for (let i = 0; i < 100; i++) {
@@ -67,7 +60,7 @@ function EventTimeHandler() {
         addEvents();
     }, EventDelay)
 }
-const place = (cell) => {cell.classList.add('placed')}
+// const place = (cell) => {cell.classList.add('placed')}
 
 //! ships
 dragAbles.forEach(ships => {
@@ -136,13 +129,16 @@ function addShipsIntoCells(ship) { //* 2
     //TODO: conditions for the invalid drop cells
     if(invalidCellsAtTheEnd())return
     if(invalidCellsAtTheStart())return
-    if (invalidCellsBetweenTheFirstAndTheLast())return
-    if (invalidRightMiddleCell())return
+    if(invalidCellsBetweenTheFirstAndTheLast())return
+    if(invalidRightMiddleCell())return
     if(invalidLeftMiddleCell())return
+    //! The above conditions check of the cells is empty
 
 
+    //TODO: Verify if a ship is present at the drop-off location.
+    if (verifyIfShipsOnTheWay())return
 
-
+    
     for (let i = 0; i < shipParts; i++) {
         if (i === 0) {
             lastCellHover=lastCellHover-numberOfTheShipPart; // this will put some parts of the ship behind the users click, if and only if he didn't click on the first part of the ships
@@ -152,6 +148,7 @@ function addShipsIntoCells(ship) { //* 2
         }
         cells.item(lastCellHover + i).classList.add('placed')
         cells.item(lastCellHover + i).classList.add('ship-placed')
+        shipsIndexOnBoard.push(lastCellHover+i)
 
     } // end for loop
 
@@ -206,6 +203,8 @@ function invalidRightMiddleCell(){
 
 
 function invalidLeftMiddleCell(){
+    if(shipParts===numberOfTheShipPart+1)return false 
+
     let tempLastCellHover = lastCellHover
     let findConflict;
     for (let i = 0; i < numberOfTheShipPart+1; i++) {
@@ -215,4 +214,17 @@ function invalidLeftMiddleCell(){
         tempLastCellHover--
     }
     return false;
+}
+
+//* [shipsSpotNumberOnBoard] 
+function verifyIfShipsOnTheWay(){
+    let numberOfCellToStartWith= lastCellHover-numberOfTheShipPart
+    let findShipSOnTheWay;
+    for(let i = 0; i < shipParts; i++){
+        findShipSOnTheWay = shipsIndexOnBoard.some(handler=>{return numberOfCellToStartWith===handler})
+        numberOfCellToStartWith++
+        if(findShipSOnTheWay===true)
+        return findShipSOnTheWay
+    }
+    return false
 }
