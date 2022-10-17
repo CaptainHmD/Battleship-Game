@@ -9,7 +9,7 @@ var shipSize; //!
 var numberOfTheShipPart;
 const EventDelay = 1000;
 const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
-const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+const notAllowedHorizontalOnStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
 const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
 var cellTarget;
@@ -43,7 +43,7 @@ function removeEvent() {
 
 function myClickHandler(handler) {
     const tar = handler.target;
-    
+
     if (tar.classList.contains('placed')) return // if the cell was clicked  don`t do anything
 
     console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)) //TODO:  delete later ******* 
@@ -59,7 +59,7 @@ function EventTimeHandler() {
         addEvents();
     }, EventDelay)
 }
-const place = (cell) => {cell.classList.add('placed')}
+const place = (cell) => { cell.classList.add('placed') }
 
 //! ships
 dragAbles.forEach(ships => {
@@ -127,21 +127,27 @@ function addShipsIntoCells(ship) { //* 2
 
     //TODO: conditions for the invalid drop cells
     if (invalidCellsAtTheEnd()) return
+    console.log('1');
     if (invalidCellsAtTheStart()) return
+    console.log('2');
     if (invalidCellsBetweenTheFirstAndTheLast()) return
+    console.log('3');
     if (invalidRightMiddleCell()) return
+    console.log('4');
     if (invalidLeftMiddleCell()) return
+    console.log('5');
     //! The above conditions check of the cells is empty
 
     //TODO: Verify if a ship is present at the drop-off location.
     if (verifyIfShipsOnTheWay()) return
-
+    console.log('6');
 
     addShipOnBoard();
 
 
     // console.table('shipsIndexOnBoard',shipsIndexOnBoard);
-    console.table('shipsIndexOnBoardWithGap', shipsIndexOnBoardWithGap.sort());
+    shipsIndexOnBoardWithGap.sort();
+    console.log('shipsIndexOnBoardWithGap', shipsIndexOnBoardWithGap);
 
 }//end of addShipsIntoCells
 
@@ -169,17 +175,53 @@ function addShipIndexInArray() {
     }
 }
 function addShipIndexWithGapInArray() {
-    let beforeLastCellHover = lastCellHover - 1;
-    for (let i = 0; i < shipParts + 2; i++) {
-        for (let j = 0; j < 2; j++) {
-            if (j == 0)
-                shipsIndexOnBoardWithGap.push(beforeLastCellHover + 10)// push the bottom cells
-            else shipsIndexOnBoardWithGap.push(beforeLastCellHover - 10)// push the top cells
-        }
+    const valuesReturn = overAndUnderFlowCells();
+    let beforeLastCellHover = valuesReturn[0];
+    let extraIteration = valuesReturn[1];
+
+    for (let i = 0; i < shipParts + extraIteration; i++) {
+        addUnderAndTopOfTheCells(beforeLastCellHover);
         shipsIndexOnBoardWithGap.push(beforeLastCellHover) // push the middle cells
-        beforeLastCellHover++ //* for next middle ship part
+        beforeLastCellHover++ //* for next middle ship part 
     }
+
 } //! end addShipIndexWithGapInArray function
+
+function overAndUnderFlowCells() {
+
+    let beforeLastCellHover = lastCellHover; //! initial value
+    let extraIteration = 2; //! initial value
+    if (notAllowedHorizontalOnStart.includes(lastCellHover))
+        extraIteration = 1;
+    else
+        beforeLastCellHover = lastCellHover - 1;
+
+    if (notAllowedHorizontalOnEnd.includes((lastCellHover + shipParts) - 1)) {
+        extraIteration = 1;
+        beforeLastCellHover = lastCellHover - 1;
+    }
+    return [beforeLastCellHover, extraIteration];
+
+}//! end overAndUnderFlowCells function
+
+
+function addUnderAndTopOfTheCells(beforeLastCellHover) {
+
+    for (let j = 0; j < 2; j++) {
+        if (j == 0) {
+            if (beforeLastCellHover + 10 > 99) //! check for numbers over 99 
+                continue
+            shipsIndexOnBoardWithGap.push(beforeLastCellHover + 10)// push the bottom cells
+        }
+        else {
+            if (beforeLastCellHover - 10 < 0) //! check for negative numbers
+                continue
+            shipsIndexOnBoardWithGap.push(beforeLastCellHover - 10)// push the top cells
+        }
+    }
+
+}//! end addUnderAndTopOfTheCells function
+
 
 
 
@@ -194,7 +236,7 @@ function invalidCellsAtTheEnd() {
 }
 function invalidCellsAtTheStart() {
     if (numberOfTheShipPart !== 0) {
-        const conflict = notAllowedHorizontalOnEStart.filter((handler) => { return handler === lastCellHover; }) // if the user clicked on the any parts of the ships but not the first part, and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnStart array , ignore it
+        const conflict = notAllowedHorizontalOnStart.filter((handler) => { return handler === lastCellHover; }) // if the user clicked on the any parts of the ships but not the first part, and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnStart array , ignore it
         if (conflict.length === 1) { return true }; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
     }
     return false;
@@ -213,11 +255,11 @@ function invalidCellsBetweenTheFirstAndTheLast() {
 
 //! requirement ship size |||  numberOfTheShipPart
 function invalidRightMiddleCell() {
-    if (numberOfTheShipPart === 0 && notAllowedHorizontalOnEStart.includes(lastCellHover)) return false; //!  numberOfTheShipPart===0 and user clicked on 0-10-20-30,,, then it`s valid
+    if (numberOfTheShipPart === 0 && notAllowedHorizontalOnStart.includes(lastCellHover)) return false; //!  numberOfTheShipPart===0 and user clicked on 0-10-20-30,,, then it`s valid
     let tempLastCellHover = lastCellHover
     let findConflict;
     for (let i = 0; i < shipParts - numberOfTheShipPart; i++) {
-        findConflict = notAllowedHorizontalOnEStart.some((handler) => { return handler === tempLastCellHover }) // if an invalid cell spot was detected, return true.
+        findConflict = notAllowedHorizontalOnStart.some((handler) => { return handler === tempLastCellHover }) // if an invalid cell spot was detected, return true.
         if (findConflict === true) return findConflict; // return if we have conflict or invalid cell
         tempLastCellHover++
     }
