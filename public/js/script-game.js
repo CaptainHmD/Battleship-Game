@@ -9,8 +9,9 @@ var shipSize; //!
 var numberOfTheShipPart;
 const EventDelay = 1000;
 const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
-const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100];
+const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
+const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
 var cellTarget;
 // const notAllowedVertical = [90,]
 addEvents();
@@ -42,11 +43,9 @@ function removeEvent() {
 
 function myClickHandler(handler) {
     const tar = handler.target;
+    
+    if (tar.classList.contains('placed')) return // if the cell was clicked  don`t do anything
 
-    if (tar.classList.contains('placed')) { // if the cell was clicked  don`t do anything
-        return;
-    }
-    console.log('clicked'); //TODO:  delete later ******* 
     console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)) //TODO:  delete later ******* 
     tar.innerHTML = 'clicked' //TODO:  delete later ******* 
     place(tar)
@@ -60,11 +59,11 @@ function EventTimeHandler() {
         addEvents();
     }, EventDelay)
 }
-// const place = (cell) => {cell.classList.add('placed')}
+const place = (cell) => {cell.classList.add('placed')}
 
 //! ships
 dragAbles.forEach(ships => {
-    ships.addEventListener('dragstart', ship => {onDragStart(ship, ships)})
+    ships.addEventListener('dragstart', ship => { onDragStart(ship, ships) })
     ships.addEventListener('dragend', onDragEnd(ships))
     ships.addEventListener('mousedown', onMouseDown)
 }) //! end of forEach for dragAbles
@@ -81,7 +80,7 @@ function onDragEnd(ships) {
 
 function onMouseDown(handler) {
     console.log(handler.target);
-    cellTarget=handler.target;
+    cellTarget = handler.target;
     shipSize = (handler.target.id).split('-')[0]
     numberOfTheShipPart = parseInt((handler.target.id).split('-')[1])
     console.log('size:\t', shipSize); //* for knowing what is the size of the ship that has been clicked
@@ -90,7 +89,7 @@ function onMouseDown(handler) {
 
 
 
- //! cells
+//! cells
 cells.forEach(cell => {
     cell.addEventListener('dragover', dragOverTheCells) //* 1
     cell.addEventListener('drop', addShipsIntoCells, true) //* 2
@@ -121,107 +120,133 @@ const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 //! (shipSize) ship size (: but in text
 function addShipsIntoCells(ship) { //* 2
     console.log('drop');
-    console.log('lastCellHover: ',lastCellHover);
-    console.log('shipParts: ',shipParts);
-    console.log('numberOfTheShipPart: ',numberOfTheShipPart);
+    console.log('lastCellHover: ', lastCellHover);
+    console.log('shipParts: ', shipParts);
+    console.log('numberOfTheShipPart: ', numberOfTheShipPart);
     console.log('shipSize ', shipSize);
-    
+
     //TODO: conditions for the invalid drop cells
-    if(invalidCellsAtTheEnd())return
-    if(invalidCellsAtTheStart())return
-    if(invalidCellsBetweenTheFirstAndTheLast())return
-    if(invalidRightMiddleCell())return
-    if(invalidLeftMiddleCell())return
+    if (invalidCellsAtTheEnd()) return
+    if (invalidCellsAtTheStart()) return
+    if (invalidCellsBetweenTheFirstAndTheLast()) return
+    if (invalidRightMiddleCell()) return
+    if (invalidLeftMiddleCell()) return
     //! The above conditions check of the cells is empty
 
-
     //TODO: Verify if a ship is present at the drop-off location.
-    if (verifyIfShipsOnTheWay())return
+    if (verifyIfShipsOnTheWay()) return
 
-    
+
+    addShipOnBoard();
+
+
+    // console.table('shipsIndexOnBoard',shipsIndexOnBoard);
+    console.table('shipsIndexOnBoardWithGap', shipsIndexOnBoardWithGap.sort());
+
+}//end of addShipsIntoCells
+
+
+function addShipOnBoard() {
     for (let i = 0; i < shipParts; i++) {
         if (i === 0) {
-            lastCellHover=lastCellHover-numberOfTheShipPart; // this will put some parts of the ship behind the users click, if and only if he didn't click on the first part of the ships
+            lastCellHover = lastCellHover - numberOfTheShipPart; // it will reset to the first part of the ship, if and only if he didn't click on the first part of the ships
             cells.item(lastCellHover).classList.add('start')
         } else if (i === (shipParts - 1)) {
             cells.item(lastCellHover + i).classList.add('end')
         }
         cells.item(lastCellHover + i).classList.add('placed')
         cells.item(lastCellHover + i).classList.add('ship-placed')
-        shipsIndexOnBoard.push(lastCellHover+i)
-
     } // end for loop
+    addShipIndexInArray()
+    addShipIndexWithGapInArray()
+}
 
+// const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
 
-}//end of addShipsIntoCells
-
-
+function addShipIndexInArray() {
+    for (let i = 0; i < shipParts; i++) {
+        shipsIndexOnBoard.push(lastCellHover + i)
+    }
+}
+function addShipIndexWithGapInArray() {
+    let beforeLastCellHover = lastCellHover - 1;
+    for (let i = 0; i < shipParts + 2; i++) {
+        for (let j = 0; j < 2; j++) {
+            if (j == 0)
+                shipsIndexOnBoardWithGap.push(beforeLastCellHover + 10)// push the bottom cells
+            else shipsIndexOnBoardWithGap.push(beforeLastCellHover - 10)// push the top cells
+        }
+        shipsIndexOnBoardWithGap.push(beforeLastCellHover) // push the middle cells
+        beforeLastCellHover++ //* for next middle ship part
+    }
+} //! end addShipIndexWithGapInArray function
 
 
 
 //! conditions functions
 
 function invalidCellsAtTheEnd() {
-    if (numberOfTheShipPart===0) {
-        const conflict =notAllowedHorizontalOnEnd.filter((handler)=>{return handler===lastCellHover;}) // if the user clicked on the fist part of the ships , and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnEnd array , ignore it
-        if(conflict.length===1){return true}; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
+    if (numberOfTheShipPart === 0) {
+        const conflict = notAllowedHorizontalOnEnd.filter((handler) => { return handler === lastCellHover; }) // if the user clicked on the fist part of the ships , and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnEnd array , ignore it
+        if (conflict.length === 1) { return true }; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
     }
     return false;
 }
 function invalidCellsAtTheStart() {
-    if (numberOfTheShipPart!==0) {
-        const conflict =notAllowedHorizontalOnEStart.filter((handler)=>{return handler===lastCellHover;}) // if the user clicked on the any parts of the ships but not the first part, and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnStart array , ignore it
-        if(conflict.length===1){return true}; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
+    if (numberOfTheShipPart !== 0) {
+        const conflict = notAllowedHorizontalOnEStart.filter((handler) => { return handler === lastCellHover; }) // if the user clicked on the any parts of the ships but not the first part, and he want to placed it in some of the invalid cells , that is in the notAllowedHorizontalOnStart array , ignore it
+        if (conflict.length === 1) { return true }; //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
     }
     return false;
 }
-function invalidCellsBetweenTheFirstAndTheLast(){
-    if (!cellTarget.classList.contains('end')&&!cellTarget.classList.contains('start')) {
-        const firstConflict = notAllowedHorizontalOnEnd.filter((handler)=>{return lastCellHover===handler}) // this will check for the invalid cells at the end of the board, if found it will return it , so the length will be 1 , now i can check for length
-        const secondConflict = notAllowedHorizontalOnEnd.filter((handler)=>{return lastCellHover===handler})// this will check for the invalid cells  at the start of the board, if found it will return it , so the length will be 1 , now i can check for length
-        if (firstConflict.length===1||secondConflict.length===1) { //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
+function invalidCellsBetweenTheFirstAndTheLast() {
+    if (!cellTarget.classList.contains('end') && !cellTarget.classList.contains('start')) {
+        const firstConflict = notAllowedHorizontalOnEnd.filter((handler) => { return lastCellHover === handler }) // this will check for the invalid cells at the end of the board, if found it will return it , so the length will be 1 , now i can check for length
+        const secondConflict = notAllowedHorizontalOnEnd.filter((handler) => { return lastCellHover === handler })// this will check for the invalid cells  at the start of the board, if found it will return it , so the length will be 1 , now i can check for length
+        if (firstConflict.length === 1 || secondConflict.length === 1) { //! if the length is 1 , that`s mean there is an invalid drop  , return true to go out
             return true
         }
-        
+
     }
     return false;
 }
 
 //! requirement ship size |||  numberOfTheShipPart
-function invalidRightMiddleCell(){
-    if(numberOfTheShipPart===0 && notAllowedHorizontalOnEStart.includes(lastCellHover))return false; //!  numberOfTheShipPart===0 and user clicked on 0-10-20-30,,, then it`s valid
+function invalidRightMiddleCell() {
+    if (numberOfTheShipPart === 0 && notAllowedHorizontalOnEStart.includes(lastCellHover)) return false; //!  numberOfTheShipPart===0 and user clicked on 0-10-20-30,,, then it`s valid
     let tempLastCellHover = lastCellHover
     let findConflict;
     for (let i = 0; i < shipParts - numberOfTheShipPart; i++) {
-        findConflict = notAllowedHorizontalOnEStart.some((handler) => {return handler === tempLastCellHover}) // if an invalid cell spot was detected, return true.
-        if(findConflict===true)return findConflict; // return if we have conflict or invalid cell
+        findConflict = notAllowedHorizontalOnEStart.some((handler) => { return handler === tempLastCellHover }) // if an invalid cell spot was detected, return true.
+        if (findConflict === true) return findConflict; // return if we have conflict or invalid cell
         tempLastCellHover++
     }
     return false;
 }
 
 
-function invalidLeftMiddleCell(){
-    if(shipParts===numberOfTheShipPart+1 && notAllowedHorizontalOnEnd.includes(lastCellHover))return false //!fix .. shipParts===numberOfTheShipPart+1 and user clicked on 9-19-29-39,,,, then it`s valid
+function invalidLeftMiddleCell() {
+    if (shipParts === numberOfTheShipPart + 1 && notAllowedHorizontalOnEnd.includes(lastCellHover)) return false //!fix .. shipParts===numberOfTheShipPart+1 and user clicked on 9-19-29-39,,,, then it`s valid
     let tempLastCellHover = lastCellHover
     let findConflict;
-    for (let i = 0; i < numberOfTheShipPart+1; i++) {
-        findConflict = notAllowedHorizontalOnEnd.some((handler) => {return handler === tempLastCellHover}) // if an invalid cell spot was detected, return true.
-        if(findConflict===true)return findConflict; // return if we have conflict or invalid cell
+    for (let i = 0; i < numberOfTheShipPart + 1; i++) {
+        findConflict = notAllowedHorizontalOnEnd.some((handler) => { return handler === tempLastCellHover }) // if an invalid cell spot was detected, return true.
+        if (findConflict === true) return findConflict; // return if we have conflict or invalid cell
         tempLastCellHover--
     }
     return false;
 }
 
 //* [shipsSpotNumberOnBoard] 
-function verifyIfShipsOnTheWay(){
-    let numberOfCellToStartWith= lastCellHover-numberOfTheShipPart
+function verifyIfShipsOnTheWay() {
+    let numberOfCellToStartWith = lastCellHover - numberOfTheShipPart
     let findShipSOnTheWay;
-    for(let i = 0; i < shipParts; i++){
-        findShipSOnTheWay = shipsIndexOnBoard.some(handler=>{return numberOfCellToStartWith===handler})
+    for (let i = 0; i < shipParts; i++) {
+        findShipSOnTheWay = shipsIndexOnBoardWithGap.some(handler => { return numberOfCellToStartWith === handler })
         numberOfCellToStartWith++
-        if(findShipSOnTheWay===true)
-        return findShipSOnTheWay
+        if (findShipSOnTheWay === true)
+            return findShipSOnTheWay
     }
     return false
 }
+
