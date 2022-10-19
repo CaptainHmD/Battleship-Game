@@ -1,7 +1,7 @@
 
 let currModal = {};
 
-console.log("GGG");
+
 function init(name) {
     currModal = {
         "modal": document.getElementById(`${name}-modal`),

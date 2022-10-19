@@ -291,4 +291,3 @@ function verifyIfShipsOnTheWay() {
     }
     return false
 }
-

@@ -20,7 +20,7 @@
     <div class="scoreboard mt-3">
       <div class="score-info-container text-info">
         <i class=" bi bi-person-fill"></i>
-        <h2>player 1</h2>
+        <h2 id="player-name">Player 1</h2>
       </div>
 
       <!--HAMAD-->
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="board-container row justify-content-center mt-5">
       <div class="board" id="board">
         <!-- <div class="cell" data-cell>1</div>
         <div class="cell" data-cell>2</div>
@@ -157,19 +157,26 @@
 
 
   <!--username modal-->
-  <!-- <div class="username-modal position-absolute start-50 top-50 translate-middle">
-    <h1 class="text-light">Please Enter your username</h1>
-    <div class="input-field d-flex">
-      <input class="text-light fs-3 border rounded" type="text" name="" id="username">
-      <button class="confirm-username text-light fs-3 border rounded border-success">Confirm</button>
+  <div class="username-modal" id="usrname-modal">
+    <div class="username-modal-body" 
+    id="usrname-modal-body"
+    >
+      <div class="d-flex justify-content-between align-items-center p-2">
+        <p class="text-light fs-lg-1 fs-2">Please Enter your username</p>
+      </div>
+      <div class="input-field d-flex">
+        <input class="text-light fs-5 border rounded" type="text" name="" id="username" value="Player 1">
+        <button class="confirm-username text-light fs-3 border rounded border-success mt-3
+        mt-md-0" id="close-btn-usrname" onclick="confirmName('usrname')">Confirm</button>
+      </div>
     </div>
-  </div> -->
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
     crossorigin="anonymous"></script>
-  <script src="../js/script-game.js"></script>
-  <script src="../js/script-game-2.js"></script>
+    <script src="../js/script-game.js"></script>
+    <script src="../js/script-game-2.js"></script>
 </body>
 
 </html>
