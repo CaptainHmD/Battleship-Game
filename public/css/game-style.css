@@ -51,13 +51,17 @@ html {
   flex-direction: column;
 }
 
-.ship {
+.ship{
   display: flex;
   flex-wrap: wrap;
   margin: 1vmin;
+  background-color:none !important;
   width: calc(var(--cell-size) * var(--width));
   height: calc(var(--cell-size) * 0.9);
+ 
 }
+
+
 .small-ship {
   --width: 2;
 }

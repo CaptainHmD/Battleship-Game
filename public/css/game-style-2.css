@@ -42,11 +42,22 @@ body{
 
 
 .flex-display{
-     
-     background-color: dimgray;
+
      border-radius: 20px;
      padding: 1%;
      width: 70%;
+     position: relative; 
+    background-color: dimgray;
+   
+
+}
+
+ 
+
+.ship-wrapper{
+position: absolute;
+width: 70%;
+z-index: -2;
 }
 
 
