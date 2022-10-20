@@ -44,20 +44,29 @@ body{
 .flex-display{
 
      border-radius: 20px;
-     padding: 1%;
-     width: 70%;
+     padding: 2%;
+     width: 100%;
      position: relative; 
-    background-color: dimgray;
+
    
 
 }
 
- 
+.background-container{
+
+     width: 70%;
+     height: 26vh;
+     background-color: dimgray;
+     pointer-events: none;
+     border-radius: 10px;
+     position: absolute;
+    
+}
 
 .ship-wrapper{
 position: absolute;
 width: 70%;
-z-index: -2;
+z-index: 1;
 }
 
 

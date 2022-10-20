@@ -88,7 +88,7 @@ html {
   width: var(--cell-size);
   height: calc(var(--cell-size) * 0.9);
   background-color: #e8e3ff;
-  border: none;
+  border: 0;
 }
 
 #small-0 {
