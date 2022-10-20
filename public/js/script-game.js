@@ -12,6 +12,7 @@ const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 const notAllowedHorizontalOnStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
 const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
+const shipsValidationByName =[];
 var cellTarget;
 // const notAllowedVertical = [90,]
 addEvents();
@@ -68,13 +69,13 @@ dragAbles.forEach(ships => {
     ships.addEventListener('mousedown', onMouseDown)
 }) //! end of forEach for dragAbles
 
-
 function onDragStart(ship, ships) {
     ships.classList.add('dragging'); //* for some effects
     console.log(ship.target);
     shipParts = ship.path[0].children.length;//* to get number of  ships part 
 }
 function onDragEnd(ships) {
+    
     ships.classList.remove('dragging')//* to remove the effects
 }
 
@@ -83,7 +84,7 @@ function onMouseDown(handler) {
     cellTarget = handler.target;
     shipSize = (handler.target.id).split('-')[0]
     numberOfTheShipPart = parseInt((handler.target.id).split('-')[1])
-    console.log('size:\t', shipSize); //* for knowing what is the size of the ship that has been clicked
+    console.log('shipSize:\t', shipSize); //* for knowing what is the size of the ship that has been clicked
     console.log('click:\t', numberOfTheShipPart); //* for knowing where is the parts the has been clicked
 }
 
@@ -124,26 +125,19 @@ function addShipsIntoCells(ship) { //* 2
     console.log('shipParts: ', shipParts);
     console.log('numberOfTheShipPart: ', numberOfTheShipPart);
     console.log('shipSize ', shipSize);
-
     //TODO: conditions for the invalid drop cells
     if (invalidCellsAtTheEnd()) return
-    console.log('1');
     if (invalidCellsAtTheStart()) return
-    console.log('2');
     if (invalidCellsBetweenTheFirstAndTheLast()) return
-    console.log('3');
     if (invalidRightMiddleCell()) return
-    console.log('4');
     if (invalidLeftMiddleCell()) return
-    console.log('5');
     //! The above conditions check of the cells is empty
 
     //TODO: Verify if a ship is present at the drop-off location.
     if (verifyIfShipsOnTheWay()) return
-    console.log('6');
 
-    addShipOnBoard();
-
+    if(shipUnique())return
+      addShipOnBoard();
 
     // console.table('shipsIndexOnBoard',shipsIndexOnBoard);
     shipsIndexOnBoardWithGap.sort();
@@ -162,9 +156,14 @@ function addShipOnBoard() {
         }
         cells.item(lastCellHover + i).classList.add('placed')
         cells.item(lastCellHover + i).classList.add('ship-placed')
+        
     } // end for loop
+    shipsValidationByName.push(shipSize); 
     addShipIndexInArray()
     addShipIndexWithGapInArray()
+}
+function shipUnique(){
+    return shipsValidationByName.includes(shipSize);
 }
 
 // const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
@@ -290,4 +289,8 @@ function verifyIfShipsOnTheWay() {
             return findShipSOnTheWay
     }
     return false
+}
+
+function endShip(){
+
 }
