@@ -1,7 +1,6 @@
-
 const board = document.getElementById("npc-board");
 const destroyed = [];
-const eye = document.getElementById("eye")
+const eye = document.getElementById("eye");
 let alive = [];
 for (let i = 1; i <= 100; i++) {
   const cell = document.createElement("div");
@@ -12,7 +11,6 @@ for (let i = 1; i <= 100; i++) {
   board.appendChild(cell);
 }
 npcPlaceShips();
-
 
 function npcPlaceShips() {
   const randomNum = (i, size) => {
@@ -59,89 +57,80 @@ function npcPlaceShips() {
 
   let sizeCounter = 2;
   let leftMostIndex = 10;
-     while (leftMostIndex > 6) {
-          placeShip(leftMostIndex, sizeCounter);
-          leftMostIndex--;
-          sizeCounter++;
+  while (leftMostIndex > 6) {
+    placeShip(leftMostIndex, sizeCounter);
+    leftMostIndex--;
+    sizeCounter++;
   }
-  console.log(alive)
+  console.log(alive);
 }
 
 function clicked(i) {
-     const notification = document.getElementById("target-alert");
-     let message = "Missed The Target";
-     notification.classList.add("slide-down-alert");
-     if (destroyed.includes(i)) { return; }
+  const notification = document.getElementById("target-alert");
+  let message = "Missed The Target";
 
-     
-     if (alive.includes(i)) {
-          destroyed.push(i);
-          alive.splice(alive.indexOf(i), 1);
+  if (destroyed.includes(i)) {
+    console.log("INCLUDED");
+    return;
+  }
+  notification.classList.add("slide-down-alert");
 
+  if (alive.includes(i)) {
+    destroyed.push(i);
+    alive.splice(alive.indexOf(i), 1);
 
+    let dead = document.getElementById(i);
+    dead.style.background = "red";
+    dead.style.cursor = "not-allowed";
+    message = "Target Has Been Hit";
+    notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
 
-          let dead = document.getElementById(i);
-          dead.style.background = "red";
-          dead.style.cursor = "not-allowed";
-          message = "Target Has Been Hit"
-          notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
-
-          if (alive.length === 0) { 
-               message = "You Win !"
-               notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;  
-          }
-     } else {
-          notification.innerHTML = `<h2 class="text-center text-danger fs-2">${message}</h2>`;
+    if (alive.length === 0) {
+      message = "You Win !";
+      notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
+    }
+  } else {
+    notification.innerHTML = `<h2 class="text-center text-danger fs-2">${message}</h2>`;
   }
 
-     setTimeout(() => { 
-          notification.classList.remove("slide-down-alert")
-          notification.classList.add("slide-up-alert");
+  setTimeout(() => {
+    notification.classList.remove("slide-down-alert");
+    notification.classList.add("slide-up-alert");
   }, 950);
 
   setTimeout(() => {
-     notification.classList.remove("slide-down-alert")
-     notification.classList.remove("slide-up-alert")
-     
+    notification.classList.remove("slide-down-alert");
+    notification.classList.remove("slide-up-alert");
+
     const modal = document.getElementById("npc-modal");
-//     modal.classList.add("visually-hidden");
+    //     modal.classList.add("visually-hidden");
   }, 1600);
 }
 
 function hide() {
-     alive.map((obj) => {
-          let ship = document.getElementById(obj);
-     
-          ship.removeAttribute("style");
-     });
+  alive.map((obj) => {
+    let ship = document.getElementById(obj);
+
+    ship.removeAttribute("style");
+  });
 }
 
 function fill(color) {
-
-
-     alive.map((obj) => {
-          let ship = document.getElementById(obj);
-          ship.style.backgroundColor = color;
-     });
-
-     
+  alive.map((obj) => {
+    let ship = document.getElementById(obj);
+    ship.style.backgroundColor = color;
+  });
 }
 function highlight() {
-     
+  //it means solution is hidden
+  if (eye.classList.contains("bi-eye")) {
+    eye.classList.add("bi-eye-slash-fill");
+    eye.classList.remove("bi-eye");
 
-     
-     //it means solution is hidden
-     if (eye.classList.contains("bi-eye")) {
-          eye.classList.add("bi-eye-slash-fill") 
-          eye.classList.remove("bi-eye")
-         
-       hide();
-          
-     } else {
-          eye.classList.add("bi-eye")
-          eye.classList.remove("bi-eye-slash-fill")
-          fill("green");
-
-     }
-
+    hide();
+  } else {
+    eye.classList.add("bi-eye");
+    eye.classList.remove("bi-eye-slash-fill");
+    fill("green");
+  }
 }
