@@ -10,13 +10,14 @@
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
   <link rel="stylesheet" href="../css/game-style.css" />
   <link rel="stylesheet" href="..//css/game-style-2.css">
+  <link rel="stylesheet" href="..//css/responsive-cells.css">
   <link rel="icon" type="image/x-icon" href="../Resources/Favicon/battleship2.png">
 </head>
 
 <body>
 
 
-  <div class="d-flex justify-content-center">
+  <div class="scoreboard-wrapper d-flex justify-content-center mt-3 mb-3">
     <div class="scoreboard mt-3">
       <div class="score-info-container text-info">
         <i class=" bi bi-person-fill"></i>
@@ -36,8 +37,9 @@
     
     </div>
   </div>
-  <div class="container">
-    <div class="board-container row justify-content-center mt-5">
+
+  <div class="container main-container">
+    <div class="board-container row justify-content-center ">
       <div class="board" id="board">
         <!-- <div class="cell" data-cell>1</div>
         <div class="cell" data-cell>2</div>
@@ -143,10 +145,9 @@
     </div> <!--row-->
     <div class="row">
       
-      <div class="container d-flex justify-content-center">
-        <div class="background-container mt-4"></div>
-        <div class="ship-wrapper d-flex justify-content-center">
-          <div class="flex-display ">
+      <div class="ships-container container d-flex justify-content-center ">
+        <div class="ship-wrapper d-flex justify-content-center mt-5">
+          <div class="flex-display">
             <div class="ship small-ship drag" draggable="true"><div id="small-0"class="start"></div><div id="small-1"class="end"></div></div>
             <div class="ship medium-ship drag" draggable="true"><div id="medium-0"class="start" start></div><div id="medium-1"></div><div id="medium-2"class="end"></div></div>
             <div class="ship larg-ship drag" draggable="true"><div id="larg-0"class="start"></div><div id="larg-1"></div><div id="larg-2"></div><div id="larg-3"class="larg end"></div></div>
@@ -182,7 +183,7 @@
 
 
   <!-- bot board modal -->
-  <div class="npc-modal" id="npc-modal">
+  <!-- <div class="npc-modal" id="npc-modal">
     
     <div class="npc-modal-body" >
       <i class="clickable-eye bi bi-eye-slash-fill position-absolute top-0 end-0 fs-3 mx-4 mt-2" 
@@ -197,17 +198,17 @@
       <div class="npc-board board" id="npc-board">
       </div>  
     </div>
-  </div>
+  </div> -->
 
       <!-- Alert modal -->
-      <div class="alert-modal">
+      <!-- <div class="alert-modal">
         <div class="alert-modal-body  mt-2 mt-sm-4" id="target-alert">
           <h2 class="text-center">
             
           </h2>
         </div>
       </div>
-    </div>
+    </div>  -->
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"

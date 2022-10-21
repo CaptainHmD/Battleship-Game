@@ -1,3 +1,4 @@
+
 const board = document.getElementById("npc-board");
 const destroyed = [];
 const eye = document.getElementById("eye")
@@ -133,7 +134,8 @@ function highlight() {
      if (eye.classList.contains("bi-eye")) {
           eye.classList.add("bi-eye-slash-fill") 
           eye.classList.remove("bi-eye")
-          hide();
+         
+       hide();
           
      } else {
           eye.classList.add("bi-eye")

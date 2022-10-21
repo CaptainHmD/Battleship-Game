@@ -1,0 +1,55 @@
+:root{
+     --cell-size: 45px;
+}
+
+.cell {
+     width: var(--cell-size);
+     height: var(--cell-size);
+     border: 1.5px solid white;
+     display: flex;
+     justify-content: center; /*col*/
+     align-items: center; /*row*/
+     position: relative;
+     cursor: pointer;
+   }
+
+
+
+
+
+@media screen and (max-width:2560px){
+     :root{
+          --cell-size:55px
+     }
+}
+
+@media screen and (max-width:1920px){
+     :root{
+          --cell-size:45px
+     }
+}
+
+@media screen and (max-width:1500) {
+     :root{
+          --cell-size:35px;
+     }
+}
+
+@media screen and (max-width:450px){
+     :root{
+          --cell-size:35px
+     }
+}
+
+@media screen and (max-width:360px){
+     :root{
+          --cell-size:10vw;
+     }
+}
+
+
+@media screen and (max-height:650px) {
+     :root{
+          --cell-size:32px;
+     }
+}
