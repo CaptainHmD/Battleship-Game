@@ -170,6 +170,9 @@ function addShipOnBoard() {
     addShipIndexInArray()
     addShipIndexWithGapInArray()
     removeShipAfterPlacing()
+    if (shipsValidationByName.length===4) {
+        timeCounter();
+    }
 }
 function shipUnique(){
     return shipsValidationByName.includes(shipSize);
@@ -304,5 +307,35 @@ function removeShipAfterPlacing(){
    const ship= document.querySelector(`.${shipSize}-ship`);
     ship.setAttribute('draggable',false);
     ship.remove();
+
+}
+const elementTimer = document.getElementById('time-counter');
+var timer = 300// =5 min
+let setTerval;
+function timeCounter(){
+         setTerval = setInterval(()=>{timeFormat(--timer)},1000)
+}
+
+function timeFormat(timeInSecond){
+    let tempTimerInMin = timeInSecond/60 
+    const tempTimerSecondRemained = ((tempTimerInMin%Math.floor(tempTimerInMin))*60).toFixed(0);
+    tempTimerInMin=Math.floor(tempTimerInMin);
+
+    if(tempTimerSecondRemained<10 &&tempTimerInMin>0){
+        elementTimer.innerHTML=`${tempTimerInMin}:0${tempTimerSecondRemained}`
+    }else if(tempTimerInMin>0){
+        elementTimer.innerHTML=`${tempTimerInMin}:${tempTimerSecondRemained}`
+
+    }else{
+        if(timer<10){
+            elementTimer.innerHTML=`0:0${timer}`
+        }else{
+            elementTimer.innerHTML=`0:${timer}`
+        }
+    }
+    if(timer<=0){
+        clearInterval(setTerval);
+    }
+   
 
 }

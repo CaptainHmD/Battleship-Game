@@ -1,4 +1,6 @@
 class game{
-    test='game'
+    
+    timeLeft;
+    
 }
 export{game}
