@@ -79,12 +79,12 @@ html {
 }
 
 .start {
-  border-bottom-left-radius: var(--border--radius);
-  border-top-left-radius: var(--border--radius);
+  /* clip-path: polygon(45% 0, 100% 0, 100% 100%, 45% 100%, 20% 50%); */
 }
 .end {
-  border-bottom-right-radius: var(--border--radius);
-  border-top-right-radius: var(--border--radius);
+
+
+
 
 }
 
@@ -95,7 +95,23 @@ html {
   border: 0;
 }
 
-#small-0 {
+#small-0{
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/small-0.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+#small-1{
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/small-1.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* #small-0 {
   background-color: #7153fa;
 }
 #small-1 {
@@ -136,7 +152,7 @@ html {
 }
 #massive-4 {
   background-color: #ff1616;
-}
+} */
 .ship-placed {
   width: var(--cell-size);
   height: calc(var(--cell-size));

@@ -1,5 +1,5 @@
 :root{
-     --cell-size: 45px;
+     --cell-size: 55px;
 }
 
 .cell {
@@ -27,6 +27,7 @@
      :root{
           --cell-size:45px
      }
+
 }
 
 @media screen and (max-width:1500) {
