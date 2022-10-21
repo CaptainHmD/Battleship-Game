@@ -1,3 +1,11 @@
+import {player} from './js-classes/player.js'
+import {game} from './js-classes/game.js'
+
+const playerTest = new player();
+const gameTest = new game();
+console.log(playerTest.test);
+console.log(gameTest.test);
+
 
 const board = document.querySelector('#board'); //! game board
 createBoard();
@@ -161,6 +169,7 @@ function addShipOnBoard() {
     shipsValidationByName.push(shipSize); 
     addShipIndexInArray()
     addShipIndexWithGapInArray()
+    removeShipAfterPlacing()
 }
 function shipUnique(){
     return shipsValidationByName.includes(shipSize);
@@ -291,6 +300,9 @@ function verifyIfShipsOnTheWay() {
     return false
 }
 
-function endShip(){
+function removeShipAfterPlacing(){
+   const ship= document.querySelector(`.${shipSize}-ship`);
+    ship.setAttribute('draggable',false);
+    ship.remove();
 
 }
