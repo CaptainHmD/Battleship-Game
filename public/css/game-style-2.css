@@ -7,6 +7,7 @@
      --border-color:#e2e2e2;
      --border-color-hover:#f3f3f3;
      --text-color:#e0e0e0;
+     --border-radius:18px;
 }
 
 html,body{
@@ -72,9 +73,12 @@ z-index: 1;
 
 .board{
      background-color: rgb(3, 58, 121);
+  
 }
 
-.username-modal{
+
+
+.username-modal,.npc-modal{
      position: fixed;
      top: 0;
      left: 0;
@@ -89,11 +93,24 @@ z-index: 1;
      z-index: 2;
 }
 
+.npc-modal-body{
+     width: 60%;
+     height: 70%;
+     position: absolute;
+     border-radius: var(--border-radius);
+     background-color: rgb(10, 10, 10);
+}   
+
+.clickable-eye{
+     cursor:pointer;
+     z-index: 1;
+}
+
 
 .username-modal-body{
     
      background-color: black;
-     border-radius: 20px;
+     border-radius:var(--border-radius);
      width: 60%;
      padding: 1%;
      position: relative;
@@ -119,27 +136,75 @@ z-index: 1;
      background-color: #198754;
 }
 
+.alert-modal{
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+
+}
+
+.alert-modal-body{
+     width: 30%;
+     padding: 1%;
+     background-color: black;
+     border-radius:var(--border-radius);
+     position: absolute;
+     top: -20%;
+}
 
 
-.slide-down-username{
 
 
-animation-name: slide-down-usrname;;
-animation-duration: 1s;
+
+.slide-down-alert{
+
+
+animation-name: slide-down-alert;
+animation-duration: 0.650s;
 animation-fill-mode: forwards;
 
 }
 
+.slide-up-alert{
 
 
-@keyframes slide-down-usrname {
+     animation-name: slide-up-alert;
+     animation-duration: 0.850s;
+     animation-fill-mode: forwards;
+     
+}
+
+
+@keyframes slide-up {
+     from{
+          top:20%;
+     }
+     to{
+          top:0%;
+     }
+}
+
+
+@keyframes slide-down-alert {
+     from{
+          top:-20%;
+     }
+     to{
+          top:0%;
+     }
+}
+
+@keyframes slide-up-alert {
      from{
           top:0%;
      }
      to{
-          top:100%;
+          top:-20%;
      }
 }
+
 
 
 

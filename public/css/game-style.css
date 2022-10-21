@@ -13,7 +13,7 @@ html {
   --cell-size: 40px;
   --mark-size: calc(var(--cell-size) * 0.7);
   --cell--hover--color: #625a89;
-  --cell--background--color: rgb(4, 118, 217);
+  --cell--background--color: #0476d9;
   --border--radius: 2.3vmin;
 }
 .board {
@@ -41,6 +41,9 @@ html {
   cursor: not-allowed;
   background-color: red; /*debugging*/
 }
+
+
+
 .cell:hover:not(.placed) {
   background-color: var(--cell--hover--color);
   opacity: 0.8;
@@ -82,6 +85,7 @@ html {
 .end {
   border-bottom-right-radius: var(--border--radius);
   border-top-right-radius: var(--border--radius);
+
 }
 
 .flex-display div:not(.ship) {
