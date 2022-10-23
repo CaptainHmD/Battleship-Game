@@ -1,10 +1,10 @@
-import {player} from './js-classes/player.js'
-import {game} from './js-classes/game.js'
+// import {player} from './js-classes/player.js'
+// import {game} from './js-classes/game.js'
 
-const playerTest = new player();
-const gameTest = new game();
-console.log(playerTest.test);
-console.log(gameTest.test);
+// const playerTest = new player();
+// const gameTest = new game();
+// console.log(playerTest.test);
+// console.log(gameTest.test);
 
 
 const board = document.querySelector('#board'); //! game board
@@ -20,10 +20,10 @@ const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 const notAllowedHorizontalOnStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
 const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
-const shipsValidationByName =[];
+const shipsValidationByName = [];
 var cellTarget;
 // const notAllowedVertical = [90,]
-addEvents();
+// addEvents();
 
 
 function createBoard() {
@@ -31,44 +31,43 @@ function createBoard() {
         const cell = document.createElement('div');
         cell.setAttribute('class', 'cell');
         cell.setAttribute('data-cell', '')
-        cell.innerHTML = i  //TODO:  delete later ******* 
         board.appendChild(cell);
 
     }
 }
 
-function addEvents() {
-    cells.forEach(cell => {
-        cell.addEventListener('click', myClickHandler)
-    }
-    )
-}
-function removeEvent() {
-    cells.forEach(cell => {
-        cell.removeEventListener('click', myClickHandler)
-    })
-}
+// function addEvents() {
+//     cells.forEach(cell => {
+//         cell.addEventListener('click', myClickHandler)
+//     }
+//     )
+// }
+// function removeEvent() {
+//     cells.forEach(cell => {
+//         cell.removeEventListener('click', myClickHandler)
+//     })
+// }
 
 
-function myClickHandler(handler) {
-    const tar = handler.target;
+// function myClickHandler(handler) {
+//     const tar = handler.target;
 
-    if (tar.classList.contains('placed')) return // if the cell was clicked  don`t do anything
+//     if (tar.classList.contains('placed')) return // if the cell was clicked  don`t do anything
 
-    console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)) //TODO:  delete later ******* 
-    tar.innerHTML = 'clicked' //TODO:  delete later ******* 
-    place(tar)
-    EventTimeHandler();
+//     console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)) //TODO:  delete later ******* 
+//     tar.innerHTML = 'clicked' //TODO:  delete later ******* 
+//     place(tar)
+//     EventTimeHandler();
 
-}
+// }
 
-function EventTimeHandler() {
-    removeEvent();
-    setTimeout(() => {
-        addEvents();
-    }, EventDelay)
-}
-const place = (cell) => { cell.classList.add('placed') }
+// function EventTimeHandler() {
+//     removeEvent();
+//     setTimeout(() => {
+//         addEvents();
+//     }, EventDelay)
+// }
+// const place = (cell) => { cell.classList.add('placed') }
 
 //! ships
 dragAbles.forEach(ships => {
@@ -83,7 +82,7 @@ function onDragStart(ship, ships) {
     shipParts = ship.path[0].children.length;//* to get number of  ships part 
 }
 function onDragEnd(ships) {
-    
+
     ships.classList.remove('dragging')//* to remove the effects
 }
 
@@ -144,8 +143,8 @@ function addShipsIntoCells(ship) { //* 2
     //TODO: Verify if a ship is present at the drop-off location.
     if (verifyIfShipsOnTheWay()) return
 
-    if(shipUnique())return
-      addShipOnBoard();
+    if (shipUnique()) return
+    addShipOnBoard();
 
     // console.table('shipsIndexOnBoard',shipsIndexOnBoard);
     shipsIndexOnBoardWithGap.sort();
@@ -155,26 +154,33 @@ function addShipsIntoCells(ship) { //* 2
 
 
 function addShipOnBoard() {
+
+    lastCellHover = lastCellHover - numberOfTheShipPart; // it will reset to the first part of the ship, if and only if he didn't click on the first part of the ships
     for (let i = 0; i < shipParts; i++) {
-        if (i === 0) {
-            lastCellHover = lastCellHover - numberOfTheShipPart; // it will reset to the first part of the ship, if and only if he didn't click on the first part of the ships
-            cells.item(lastCellHover).classList.add('start')
-        } else if (i === (shipParts - 1)) {
-            cells.item(lastCellHover + i).classList.add('end')
-        }
+
+        // if (i === 0) {
+        // lastCellHover = lastCellHover - numberOfTheShipPart; // it will reset to the first part of the ship, if and only if he didn't click on the first part of the ships
+        //     cells.item(lastCellHover).classList.add('start')
+        // } else if (i === (shipParts - 1)) {
+        //     cells.item(lastCellHover + i).classList.add('end')
+        // }
         cells.item(lastCellHover + i).classList.add('placed')
         cells.item(lastCellHover + i).classList.add('ship-placed')
-        
+        cells.item(lastCellHover + i).setAttribute('id', `${shipSize}-${i}`)
+
     } // end for loop
-    shipsValidationByName.push(shipSize); 
+    shipsValidationByName.push(shipSize);
     addShipIndexInArray()
     addShipIndexWithGapInArray()
     removeShipAfterPlacing()
-    if (shipsValidationByName.length===4) {
+    if (shipsValidationByName.length === 4) {
         timeCounter();
+        setTimeout(() => {
+            document.querySelector('.npc-modal').classList.remove('visually-hidden')
+        }, 650)
     }
 }
-function shipUnique(){
+function shipUnique() {
     return shipsValidationByName.includes(shipSize);
 }
 
@@ -303,39 +309,38 @@ function verifyIfShipsOnTheWay() {
     return false
 }
 
-function removeShipAfterPlacing(){
-   const ship= document.querySelector(`.${shipSize}-ship`);
-    ship.setAttribute('draggable',false);
+function removeShipAfterPlacing() {
+    const ship = document.querySelector(`.${shipSize}-ship`);
+    ship.setAttribute('draggable', false);
     ship.remove();
 
 }
 const elementTimer = document.getElementById('time-counter');
 var timer = 300// =5 min
 let setTerval;
-function timeCounter(){
-         setTerval = setInterval(()=>{timeFormat(--timer)},1000)
+function timeCounter() {
+    setTerval = setInterval(() => { timeFormat(--timer) }, 1000)
 }
 
-function timeFormat(timeInSecond){
-    let tempTimerInMin = timeInSecond/60 
-    const tempTimerSecondRemained = ((tempTimerInMin%Math.floor(tempTimerInMin))*60).toFixed(0);
-    tempTimerInMin=Math.floor(tempTimerInMin);
+function timeFormat(timeInSecond) {
+    let tempTimerInMin = timeInSecond / 60
+    const tempTimerSecondRemained = ((tempTimerInMin % Math.floor(tempTimerInMin)) * 60).toFixed(0);
+    tempTimerInMin = Math.floor(tempTimerInMin);
 
-    if(tempTimerSecondRemained<10 &&tempTimerInMin>0){
-        elementTimer.innerHTML=`${tempTimerInMin}:0${tempTimerSecondRemained}`
-    }else if(tempTimerInMin>0){
-        elementTimer.innerHTML=`${tempTimerInMin}:${tempTimerSecondRemained}`
+    if (tempTimerSecondRemained < 10 && tempTimerInMin > 0) {
+        elementTimer.innerHTML = `${tempTimerInMin}:0${tempTimerSecondRemained}`
+    } else if (tempTimerInMin > 0) {
+        elementTimer.innerHTML = `${tempTimerInMin}:${tempTimerSecondRemained}`
 
-    }else{
-        if(timer<10){
-            elementTimer.innerHTML=`0:0${timer}`
-        }else{
-            elementTimer.innerHTML=`0:${timer}`
+    } else {
+        if (timer < 10) {
+            elementTimer.innerHTML = `0:0${timer}`
+        } else {
+            elementTimer.innerHTML = `0:${timer}`
         }
     }
-    if(timer<=0){
+    if (timer <= 0) {
         clearInterval(setTerval);
     }
-   
-
 }
+

@@ -63,6 +63,7 @@ function npcPlaceShips() {
     sizeCounter++;
   }
   console.log(alive);
+  sessionStorage.setItem('alive', alive)
 }
 
 function clicked(i) {
@@ -105,6 +106,9 @@ function clicked(i) {
     const modal = document.getElementById("npc-modal");
     //     modal.classList.add("visually-hidden");
   }, 1600);
+  HideModal(); // hide the board modal for few second
+  console.log('i', i);
+  playerHit = i;
 }
 
 function hide() {
@@ -134,3 +138,27 @@ function highlight() {
     fill("green");
   }
 }
+async function HideModal() {
+  const boardModal = document.querySelector('.npc-modal');
+  const alter = document.querySelector('.alter-wrapper');
+
+  alter.classList.add('gigachad-index')
+  boardModal.classList.add('visually-hidden')
+
+  await timeout(6000, boardModal, alter);
+  console.log('destroyed', destroyed);
+}
+function timeout(ms, boardModal, alter) {
+  return new Promise(() => setTimeout(() => {
+    boardModal.classList.remove('visually-hidden');
+    alter.classList.remove('gigachad-index');
+
+  }, ms));
+}
+var playerHit;
+/*
+
+*/
+
+// sessionStorage.setItem('playerShipsHits',)
+

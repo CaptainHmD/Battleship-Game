@@ -6,11 +6,7 @@ function confirmName() {
      const inputName = document.getElementById("username");
      let name = inputName.value;
 
-     
-     if (name.length >= 11) { 
-          name = name.substring(0, 8)+"..";
-     }
-     if (name.length === 0) { 
+     if (name.replace(/\s/g, '').length === 0) { 
           name = "Player 1";
      }
 

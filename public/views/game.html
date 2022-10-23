@@ -1,188 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../css/game-style.css" />
-    <link rel="stylesheet" href="..//css/game-style-2.css" />
-    <link rel="stylesheet" href="..//css/responsive-cells.css" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="../Resources/Favicon/battleship2.png"
-    />
-  </head>
 
-  <body>
-    <div class="scoreboard-wrapper d-flex justify-content-center mt-3 mb-3">
-      <div class="scoreboard mt-3">
-        <div class="score-info-container text-info">
-          <i class="bi bi-person-fill"></i>
-          <h2 id="player-name">Player 1</h2>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/game-style.css" />
+  <link rel="stylesheet" href="..//css/game-style-2.css" />
+  <link rel="stylesheet" href="..//css/responsive-cells.css" />
+  <link rel="icon" type="image/x-icon" href="../Resources/Favicon/battleship2.png" />
+</head>
 
-        <!--HAMAD-->
-        <div class="score-info-container text-dark">
-          <i class="bi bi-stopwatch"></i>
-          <h1 id="time-counter">5:00</h1>
-        </div>
+<body>
+  <div class="scoreboard-wrapper d-flex justify-content-center mt-3 mb-3">
+    <div class="scoreboard mt-3">
+      <div class="score-info-container text-info">
+        <i class="bi bi-person-fill"></i>
+        <h2 id="player-name">Player 1</h2>
+      </div>
 
-        <div class="score-info-container text-danger">
-          <i class="bi bi-cpu-fill"></i>
-          <h2 class="">NPC</h2>
-        </div>
+      <!--HAMAD-->
+      <div class="score-info-container text-dark">
+        <i class="bi bi-stopwatch"></i>
+        <h1 id="time-counter">5:00</h1>
+      </div>
+
+      <div class="score-info-container text-danger">
+        <i class="bi bi-cpu-fill"></i>
+        <h2 class="">NPC</h2>
       </div>
     </div>
+  </div>
 
-    <div class="container main-container">
-      <div class="board-container row justify-content-center">
-        <div class="board" id="board">
-          <!-- <div class="cell" data-cell>1</div>
-        <div class="cell" data-cell>2</div>
-        <div class="cell" data-cell>3</div>
-        <div class="cell" data-cell>4</div>
-        <div class="cell" data-cell>5</div>
-        <div class="cell" data-cell>6</div>
-        <div class="cell" data-cell>7</div>
-        <div class="cell" data-cell>8</div>
-        <div class="cell" data-cell>9</div>
-        <div class="cell" data-cell>10</div>
-        <div class="cell" data-cell>11</div>
-        <div class="cell" data-cell>12</div>
-        <div class="cell" data-cell>13</div>
-        <div class="cell" data-cell>14</div>
-        <div class="cell" data-cell>15</div>
-        <div class="cell" data-cell>16</div>
-        <div class="cell" data-cell>17</div>
-        <div class="cell" data-cell>18</div>
-        <div class="cell" data-cell>19</div>
-        <div class="cell" data-cell>20</div>
-        <div class="cell" data-cell>21</div>
-        <div class="cell" data-cell>22</div>
-        <div class="cell" data-cell>23</div>
-        <div class="cell" data-cell>24</div>
-        <div class="cell" data-cell>25</div>
-        <div class="cell" data-cell>26</div>
-        <div class="cell" data-cell>27</div>
-        <div class="cell" data-cell>28</div>
-        <div class="cell" data-cell>29</div>
-        <div class="cell" data-cell>30</div>
-        <div class="cell" data-cell>31</div>
-        <div class="cell" data-cell>32</div>
-        <div class="cell" data-cell>33</div>
-        <div class="cell" data-cell>34</div>
-        <div class="cell" data-cell>35</div>
-        <div class="cell" data-cell>36</div>
-        <div class="cell" data-cell>37</div>
-        <div class="cell" data-cell>38</div>
-        <div class="cell" data-cell>39</div>
-        <div class="cell" data-cell>40</div>
-        <div class="cell" data-cell>41</div>
-        <div class="cell" data-cell>42</div>
-        <div class="cell" data-cell>43</div>
-        <div class="cell" data-cell>44</div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell>k</div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell start" id="small-0" data-cell></div>
-        <div class="cell end" id="small-1" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div> -->
-        </div>
-      </div>
-      <!--row-->
-      <div class="row">
-        <div class="ships-container container d-flex justify-content-center">
-          <div class="ship-wrapper d-flex justify-content-center mt-5">
-            <div class="flex-display">
-              <div class="ship small-ship drag" draggable="true">
-                <div id="small-0" class="start"></div>
-                <div id="small-1" class="end"></div>
-              </div>
-              <div class="ship medium-ship drag" draggable="true">
-                <div id="medium-0" class="start" start></div>
-                <div id="medium-1"></div>
-                <div id="medium-2" class="end"></div>
-              </div>
-              <div class="ship larg-ship drag" draggable="true">
-                <div id="larg-0" class="start"></div>
-                <div id="larg-1"></div>
-                <div id="larg-2"></div>
-                <div id="larg-3" class="larg end"></div>
-              </div>
-              <div class="ship massive-ship drag" draggable="true">
-                <div id="massive-0" class="start"></div>
-                <div id="massive-1"></div>
-                <div id="massive-2"></div>
-                <div id="massive-3"></div>
-                <div id="massive-4" class="end"></div>
-              </div>
+  <div class="container main-container">
+    <div class="board-container row justify-content-center">
+      <div class="board" id="board"></div>
+    </div>
+    <!--row-->
+    <div class="row">
+      <div class="ships-container container d-flex justify-content-center">
+        <div class="ship-wrapper d-flex justify-content-center mt-5">
+          <div class="flex-display">
+            <div class="ship small-ship drag" draggable="true">
+              <div id="small-0" class="start"></div>
+              <div id="small-1" class="end"></div>
+            </div>
+            <div class="ship medium-ship drag" draggable="true">
+              <div id="medium-0" class="start" start></div>
+              <div id="medium-1"></div>
+              <div id="medium-2" class="end"></div>
+            </div>
+            <div class="ship larg-ship drag" draggable="true">
+              <div id="larg-0" class="start"></div>
+              <div id="larg-1"></div>
+              <div id="larg-2"></div>
+              <div id="larg-3" class="larg end"></div>
+            </div>
+            <div class="ship massive-ship drag" draggable="true">
+              <div id="massive-0" class="start"></div>
+              <div id="massive-1"></div>
+              <div id="massive-2"></div>
+              <div id="massive-3"></div>
+              <div id="massive-4" class="end"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!--Container-->
+  </div>
+  <!--Container-->
 
-    <!--username modal-->
-    <!-- <div class="username-modal" id="usrname-modal">
+  <!-- username modal-->
+  <div class="username-modal" id="usrname-modal">
     <div class="username-modal-body" 
     id="usrname-modal-body"
     >
@@ -190,47 +82,45 @@
         <p class="text-light fs-lg-1 fs-2">Please Enter your username</p>
       </div>
       <div class="input-field d-flex">
-        <input class="text-light fs-5 border rounded" type="text" name="" id="username" placeholder="Player 1">
+        <input class="text-light fs-5 border rounded" type="text" name="" id="username" placeholder="Player 1" maxlength="8">
         <button class="confirm-username text-light fs-3 border rounded border-success mt-3
         mt-md-0" id="close-btn-usrname" onclick="confirmName('usrname')">Confirm</button>
       </div>
       <br>
     </div>
-  </div> -->
+  </div>
 
-    <!-- bot board modal -->
-    <div class="npc-modal" id="npc-modal">
-      <div class="npc-modal-body">
-        <i
-          class="clickable-eye bi bi-eye-slash-fill position-absolute top-0 end-0 fs-3 mx-4 mt-2"
-          onclick="highlight()"
-          id="eye"
-        ></i>
-        <div
-          class="d-flex flex-column justify-content-center align-items-center mt-4"
-        >
-          <p class="fs-3 text-danger text-center">
-            Please choose where do you wanna attack
-          </p>
-          <div class="npc-board board" id="npc-board"></div>
-        </div>
-      </div>
-
-      <!-- Alert modal -->
-      <div class="alert-modal">
-        <div class="alert-modal-body mt-2 mt-sm-4" id="target-alert">
-          <h2 class="text-center"></h2>
-        </div>
+  <!-- bot board modal -->
+  <div class="npc-modal  visually-hidden" id="npc-modal">
+    <div class="npc-modal-body">
+      <i class="clickable-eye bi bi-eye-slash-fill position-absolute top-0 end-0 fs-3 mx-4 mt-2" onclick="highlight()"
+        id="eye"></i>
+      <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+        <p class="fs-3 text-danger text-center">
+          Please choose where do you wanna attack
+        </p>
+        <div class="npc-board board" id="npc-board"></div>
       </div>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="../js/script-game.js"></script>
-    <script src="../js/script-game-2.js"></script>
-    <script src="../js/script-npc.js"></script>
-  </body>
+   <!-- visually-hidden -->
+  </div>
+   <!-- Alert modal -->
+   <div class="alter-wrapper ">
+   <div class="alert-modal">
+    <div class="alert-modal-body mt-2 mt-sm-4" id="target-alert">
+      <h2 class="text-center"></h2>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <script type="module" src="../js/script-game.js"></script>
+  <script src="../js/script-game-2.js"></script>
+  <script src="../js/script-npc.js"></script>
+  <script src="../js/in-game-functionality.js"></script>
+</body>
+
 </html>

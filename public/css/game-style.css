@@ -1,6 +1,5 @@
 body,
 html {
-
   z-index: -3;
 }
 *,
@@ -35,14 +34,10 @@ html {
   justify-content: center; /*col*/
   align-items: center; /*row*/
   position: relative;
-  cursor: pointer;
 }
 .placed {
   cursor: not-allowed;
-  background-color: red; /*debugging*/
 }
-
-
 
 .cell:hover:not(.placed) {
   background-color: var(--cell--hover--color);
@@ -54,16 +49,14 @@ html {
   flex-direction: column;
 }
 
-.ship{
+.ship {
   display: flex;
   flex-wrap: wrap;
   margin: 1vmin;
-  background-color:none !important;
+  background-color: none !important;
   width: calc(var(--cell-size) * var(--width));
   height: calc(var(--cell-size) * 0.9);
- 
 }
-
 
 .small-ship {
   --width: 2;
@@ -82,10 +75,6 @@ html {
   /* clip-path: polygon(45% 0, 100% 0, 100% 100%, 45% 100%, 20% 50%); */
 }
 .end {
-
-
-
-
 }
 
 .flex-display div:not(.ship) {
@@ -93,66 +82,113 @@ html {
   height: calc(var(--cell-size) * 0.9);
   background-color: #e8e3ff;
   border: 0;
+  cursor: pointer;
 }
 
-#small-0{
+#small-0 {
   background-color: transparent !important;
-  background-image: url("../Resources/imgs/small-0.png");
+  background-image: url("../Resources/imgs/small-00.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
-#small-1{
-  background-color: transparent !important;
-  background-image: url("../Resources/imgs/small-1.png");
-  background-position: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-/* #small-0 {
-  background-color: #7153fa;
-}
 #small-1 {
-  background-color: #7153fa;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/small-11.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
+
+
 #medium-0 {
-  background-color: #242132;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/medium-0.png");
+  background-position: center;
+  background-size: 100% 100% ;
+  background-repeat: no-repeat;
+  border: none;
 }
 #medium-1 {
-  background-color: #7153fa;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/medium-1.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #medium-2 {
-  background-color: #e8e3ff;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/medium-2.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
+
 #larg-0 {
-  background-color: #242132;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/larg-0.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #larg-1 {
-  background-color: #7153fa;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/larg-1.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #larg-2 {
-  background-color: #e8e3ff;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/larg-2.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #larg-3 {
-  background-color: #00b844;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/larg-3.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #massive-0 {
-  background-color: #242132;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/massive-0.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #massive-1 {
-  background-color: #7153fa;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/massive-1.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #massive-2 {
-  background-color: #e8e3ff;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/massive-2.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #massive-3 {
-  background-color: #00b844;
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/massive-3.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 #massive-4 {
-  background-color: #ff1616;
-} */
+  background-color: transparent !important;
+  background-image: url("../Resources/imgs/massive-4.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 .ship-placed {
   width: var(--cell-size);
   height: calc(var(--cell-size));
