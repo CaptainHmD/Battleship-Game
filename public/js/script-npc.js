@@ -89,6 +89,7 @@ function clicked(i) {
     if (alive.length === 0) {
       message = "You Win !";
       notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
+      // playerWin()
     }
   } else {
     notification.innerHTML = `<h2 class="text-center text-danger fs-2">${message}</h2>`;
@@ -109,6 +110,7 @@ function clicked(i) {
   HideModal(); // hide the board modal for few second
   console.log('i', i);
   playerHit = i;
+  test()
 }
 
 function hide() {
@@ -144,21 +146,28 @@ async function HideModal() {
 
   alter.classList.add('gigachad-index')
   boardModal.classList.add('visually-hidden')
-
+  
   await timeout(6000, boardModal, alter);
   console.log('destroyed', destroyed);
 }
 function timeout(ms, boardModal, alter) {
+  callNPCAttack();
   return new Promise(() => setTimeout(() => {
     boardModal.classList.remove('visually-hidden');
     alter.classList.remove('gigachad-index');
-
   }, ms));
 }
 var playerHit;
 /*
 
 */
+function test(){
+  console.log('playerHit: ',playerHit);
+  
+}
+function callNPCAttack(){
+  NPCAttack();
+}
 
 // sessionStorage.setItem('playerShipsHits',)
 

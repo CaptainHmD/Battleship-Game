@@ -146,9 +146,6 @@ function addShipsIntoCells(ship) { //* 2
     if (shipUnique()) return
     addShipOnBoard();
 
-    // console.table('shipsIndexOnBoard',shipsIndexOnBoard);
-    shipsIndexOnBoardWithGap.sort();
-    console.log('shipsIndexOnBoardWithGap', shipsIndexOnBoardWithGap);
 
 }//end of addShipsIntoCells
 
@@ -174,6 +171,8 @@ function addShipOnBoard() {
     addShipIndexWithGapInArray()
     removeShipAfterPlacing()
     if (shipsValidationByName.length === 4) {
+        sessionStorage.setItem('shipsIndexOnBoard',shipsIndexOnBoard)
+        retrievePlayerShipIndex()
         timeCounter();
         setTimeout(() => {
             document.querySelector('.npc-modal').classList.remove('visually-hidden')
@@ -343,4 +342,7 @@ function timeFormat(timeInSecond) {
         clearInterval(setTerval);
     }
 }
+
+
+
 
