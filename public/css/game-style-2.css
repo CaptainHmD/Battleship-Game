@@ -68,7 +68,9 @@ z-index: 1;
      background-color: rgb(3, 58, 121);
 }
 
-
+.placed-ship{
+     visibility: hidden;
+}
 
 .username-modal,.npc-modal{
      position: fixed;
@@ -149,7 +151,7 @@ z-index: 1;
      overflow: hidden;
      z-index: -1;
 }
-.gigachad-index{
+.gigachad-index{ /*WTF ?*/
      z-index: 999;
 }
 
@@ -170,7 +172,7 @@ z-index: 1;
 
 
 animation-name: slide-down-alert;
-animation-duration: 0.650s;
+animation-duration: 0.850s;
 animation-fill-mode: forwards;
 
 }
@@ -185,14 +187,56 @@ animation-fill-mode: forwards;
 }
 
 
-@keyframes slide-up {
+.show-npc-board{
+     transform: translateY(300%);
+     animation:show-npc-board 1s 0s forwards;
+}
+
+.hide-npc-board{
+     transform: translateY(0%);
+     animation:hide-npc-board 1.8s 1s forwards;
+
+}
+
+.remove-ship-container{
+     animation: slide-down-ship-container 0.8s 0.5s forwards;
+}
+
+
+
+
+@keyframes hide-npc-board {
      from{
-          top:20%;
+          transform: translateY(0%);
+
      }
      to{
-          top:0%;
+          transform: translateY(300%);
      }
 }
+
+@keyframes show-npc-board{
+     from{
+          transform: translateY(300%);
+
+     }
+     to{
+          transform: translateY(0%);
+     }
+}
+
+
+
+@keyframes slide-down-ship-container{
+     from{
+     transform: translateY(0%);
+          
+     }
+     to{
+          transform: translateY(300%);
+     }
+}
+
 
 
 @keyframes slide-down-alert {
@@ -219,8 +263,8 @@ animation-fill-mode: forwards;
 
 @media screen and (max-height:880px) {
      .scoreboard,.scoreboard-wrapper{
-          display: none !important;
-          
+          position: absolute;
+          top: -30%;
      }
      .board-container{
           margin-top: 0% !important;
@@ -243,9 +287,6 @@ animation-fill-mode: forwards;
           width: 60%;
      }
      
-     .hidden-text{
-          display: none;
-     }
 
      .username-modal-body{
           height: fit-content;
@@ -254,13 +295,26 @@ animation-fill-mode: forwards;
 
      .input-field{
           flex-direction: column;
-         
+          justify-content: center;
+          align-items: center;
+     }
+
+     .input-field input,button{
+          width: 100%;
      }
 
      .flex-display{
           width: 100%;
-       
-          
+     }
+
+     .alert-modal-body{
+          width: 80%;
+     }
+
+     .npc-modal-body{
+          width: 100%;
+          height: 100%;
+          border-radius: 0;
      }
 
 }
@@ -272,12 +326,18 @@ animation-fill-mode: forwards;
      }
 
      .username-modal{
-          justify-content: flex-end;
+          height: 100% !important;
+          width: 100% !important;
+          display: grid !important;
+          grid-template-columns: 100%;
+          place-items: center !important;
      }
 
      .username-modal-body{
-          height: 50%;
-          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
        
 
      }
@@ -306,10 +366,8 @@ animation-fill-mode: forwards;
      }
 
      .username-modal-body{
-          height: 50%;
+          height: 100%;
           width: 100%;
-       
-
      }
 
      .flex-display{
@@ -317,9 +375,6 @@ animation-fill-mode: forwards;
           width: 100%;
      }
 
-     .background-container{
-          width: 85%;
-     }
      .ship-wrapper{
           width: 85%;
           

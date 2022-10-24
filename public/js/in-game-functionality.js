@@ -69,9 +69,9 @@ function attackBoardEffect(NPCIndexAttack,attackState){
     const cells = document.querySelectorAll('[data-cell]');
 
     if(attackState){
-        cells.item(NPCIndexAttack).innerHTML='hit'
+        cells.item(NPCIndexAttack).classList.add("hit-usr-ship")
     }else{
-        cells.item(NPCIndexAttack).innerHTML='miss'
+        cells.item(NPCIndexAttack).classList.add("hit-usr-ship")
     }
 }
 

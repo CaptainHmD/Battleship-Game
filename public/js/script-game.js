@@ -175,8 +175,12 @@ function addShipOnBoard() {
         retrievePlayerShipIndex()
         timeCounter();
         setTimeout(() => {
-            document.querySelector('.npc-modal').classList.remove('visually-hidden')
-        }, 650)
+            let npcBoard = document.querySelector('.npc-modal'); 
+            let npcBoardBody = document.querySelector('.npc-modal-body');
+            npcBoard.classList.remove('visually-hidden') 
+            npcBoardBody.classList.add('show-npc-board')
+
+        }, 850)
     }
 }
 function shipUnique() {
@@ -308,11 +312,25 @@ function verifyIfShipsOnTheWay() {
     return false
 }
 
+let shipsArray = [];
+//HAMAD
+//this is a temporary solution u can do it later on
+/*I want when all the ships are removed add an animation class I will provide for you later to the ships container
+to slide down so the scoreboard is visible for the user
+*/
+
 function removeShipAfterPlacing() {
     const ship = document.querySelector(`.${shipSize}-ship`);
     ship.setAttribute('draggable', false);
-    ship.remove();
-
+    ship.classList.add("placed-ship")
+    shipsArray.push(ship);
+    console.log(shipsArray.length)
+    if (shipsArray.length === 4) { 
+        let ships = document.querySelector(".ship-wrapper");
+        ships.classList.add("remove-ship-container");
+        //HAMAD make the program stop for 2 sec for all animations to complete
+    }
+    // ship.remove();
 }
 const elementTimer = document.getElementById('time-counter');
 var timer = 300// =5 min

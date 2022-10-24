@@ -62,7 +62,6 @@ function npcPlaceShips() {
     leftMostIndex--;
     sizeCounter++;
   }
-  console.log(alive);
   sessionStorage.setItem('alive', alive)
 }
 
@@ -71,7 +70,6 @@ function clicked(i) {
   let message = "Missed The Target";
 
   if (destroyed.includes(i)) {
-    console.log("INCLUDED");
     return;
   }
   notification.classList.add("slide-down-alert");
@@ -142,19 +140,27 @@ function highlight() {
 }
 async function HideModal() {
   const boardModal = document.querySelector('.npc-modal');
+  const boardModalBody = document.querySelector(".npc-modal-body");
   const alter = document.querySelector('.alter-wrapper');
 
   alter.classList.add('gigachad-index')
-  boardModal.classList.add('visually-hidden')
+  boardModalBody.classList.add("hide-npc-board");
+  setTimeout(() => {
+    boardModal.classList.add('visually-hidden')
+  }, 1850)
+  boardModal.classList.remove("show-npc-board");
   
-  await timeout(6000, boardModal, alter);
+  await timeout(6000, boardModal,boardModalBody, alter);
   console.log('destroyed', destroyed);
 }
-function timeout(ms, boardModal, alter) {
+function timeout(ms, boardModal,boardModalBody, alter) {
   callNPCAttack();
   return new Promise(() => setTimeout(() => {
     boardModal.classList.remove('visually-hidden');
-    alter.classList.remove('gigachad-index');
+    boardModalBody.classList.remove("hide-npc-board");
+    boardModalBody.classList.add("show-npc-board")
+      alter.classList.remove('gigachad-index');
+     
   }, ms));
 }
 var playerHit;

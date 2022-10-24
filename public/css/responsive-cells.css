@@ -10,10 +10,27 @@
      justify-content: center; /*col*/
      align-items: center; /*row*/
      position: relative;
+     
    }
 
 
-
+.hit-usr-ship{
+     animation-name: ship-hit;
+     animation-duration: 0.5s;
+     animation-iteration-count: 5;
+     animation-direction: alternate;
+     background-color:  rgb(218, 22, 22);
+ }
+ 
+ @keyframes ship-hit {
+      from{
+           background-color: rgb(255, 29, 29);
+      }
+      to{
+           background-color: rgb(129, 0, 0);
+      }
+ }
+ 
 
 
 @media screen and (max-width:2560px){
