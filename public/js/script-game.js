@@ -357,6 +357,7 @@ function timeFormat(timeInSecond) {
         }
     }
     if (timer <= 0) {
+        timeEnd()
         clearInterval(setTerval);
     }
 }

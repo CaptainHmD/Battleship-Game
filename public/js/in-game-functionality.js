@@ -9,7 +9,6 @@ function retrievePlayerShipIndex() {
 const previousIndexAttack = [];
 function randomAttack() {
     do {
-        console.log('ss');
         const randomNum = Math.floor(Math.random() * 100);
         if (previousIndexAttack.includes(randomNum)) continue
         previousIndexAttack.push(randomNum);
@@ -18,7 +17,10 @@ function randomAttack() {
     } while (true)
 
 }
-function NPCAttack(){
+function NPCAttack(playerHitCount){
+    winner()
+    if(playerHitCount===null)return
+    playerHits=playerHitCount
     const NPCIndexAttack = randomAttack();
     console.log('NPMIndexAttack: ',NPCIndexAttack);
     setTimeout(() => {
@@ -26,9 +28,7 @@ function NPCAttack(){
     }, 2000);
 }
  var BotHits = 0;
- var BotMisses = 0;
- var BotPlayer = 0;
- var BotPlayer = 0;
+ var playerHits = 0;
  
 function attackEffect(NPCIndexAttack){
     const notification = document.getElementById("target-alert");
@@ -38,20 +38,22 @@ function attackEffect(NPCIndexAttack){
 
     attackBoardEffect(NPCIndexAttack)
     const attackState = playerShipsIndex.includes(NPCIndexAttack+'')// hit  . why +'' because session storage return values on String type so +'' matched the types
+    let textHighLight
     if(attackState){
-        console.log('hit');
-        message = "NPN Attack Hits"
-        notification.style.color="red"
+        BotHits++
+        message = "NPC Attack Hits"
+        textHighLight = 'text-success'
+
     }else{ // miss
-        console.log('miss');
-        message = "NPN Attack Missed"
-        notification.style.color="blue" 
+        message = "NPC Attack Missed"
+        textHighLight = 'text-danger'
+
     }
     attackBoardEffect(NPCIndexAttack,attackState)
 
 
 
-    notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
+    notification.innerHTML = `<h2 class="text-center ${textHighLight} fs-2">${message}</h2>`;
     setTimeout(() => {
         notification.classList.remove("slide-down-alert");
         notification.classList.add("slide-up-alert");
@@ -73,6 +75,25 @@ function attackBoardEffect(NPCIndexAttack,attackState){
     }else{
         cells.item(NPCIndexAttack).classList.add("hit-usr-ship")
     }
+}
+function winner(){
+    console.log('playerHit: ', playerHit);
+    console.log('BotHits: ', BotHits);
+
+    if(playerHit===14){
+console.log('player win');
+    }else if(BotHits===14){
+        console.log('bot win');
+    }
+}
+function whoWin(){
+    console.log('playerHits: ',playerHits);
+    console.log('BotHits: ',BotHits);
+    if(playerHits>BotHits)
+    return "player"
+    else if (BotHits>playerHits)
+    return "npc"
+    else return "draw"
 }
 
 

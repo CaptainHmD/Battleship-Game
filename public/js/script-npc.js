@@ -91,6 +91,7 @@ function clicked(i) {
       showEndGameModal()
       // playerWin()
     }
+    playerHit++;
   } else {
     notification.innerHTML = `<h2 class="text-center text-danger fs-2">${message}</h2>`;
   }
@@ -108,9 +109,7 @@ function clicked(i) {
     //     modal.classList.add("visually-hidden");
   }, 1600);
   HideModal(); // hide the board modal for few second
-  console.log('i', i);
-  playerHit = i;
-  test()
+  winner(); // in-game-functionality file
 }
 
 function hide() {
@@ -165,7 +164,7 @@ function timeout(ms, boardModal,boardModalBody, alter) {
      
   }, ms));
 }
-var playerHit;
+var playerHit=0;
 /*
 
 */
@@ -174,7 +173,7 @@ function test(){
   
 }
 function callNPCAttack(){
-  NPCAttack();
+  NPCAttack(playerHit);
 }
 
 // sessionStorage.setItem('playerShipsHits',)
@@ -209,7 +208,30 @@ else -> {
   endGameMessage.innerText = "You Lost"  
   endGameMessage.classList.add("text-danger")
 }
-
 */
+function timeEnd() { //! im gonna call it from script-game file
+  console.log('end');
+  const winner = whoWin(); // return the Winner , player  for player && npc for bot || draw for fucking draw 
+  const endGameMessage = document.querySelector(".endGame-message")
+  if (winner === "player") {
+
+    console.log(winner,' p');
+    endGameMessage.innerText = "You Win"
+    endGameMessage.classList.add("text-success")
+
+  } else if (winner === "npc") {
+    console.log(winner,' b');
+
+    endGameMessage.innerText = "You Lost"
+    endGameMessage.classList.add("text-danger")
+
+  }else{
+    console.log(winner ,'draw');
+    endGameMessage.innerText = "Draw Pussies"
+    endGameMessage.classList.add("text-danger")
+  }
+  
+}
+
 
 

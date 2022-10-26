@@ -26,9 +26,16 @@
  
  @keyframes ship-hit {
       from{
-           background-color: rgb(255, 29, 29);
-      }
+          background-image:url('../Resources/icons/rocket-removebg-preview.png');
+
+           background-position: center;
+           background-size: 70%  70%;
+           background-repeat: no-repeat;
+           background-color:  rgb(218, 22, 22);
+          }
       to{
+          /* background-image:url('../Resources/icons/rocket-removebg-preview.png'); */
+
            background-color: rgb(129, 0, 0);
       }
  }
