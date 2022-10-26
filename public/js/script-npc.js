@@ -1,15 +1,18 @@
 const board = document.getElementById("npc-board");
-const destroyed = [];
+let destroyed = [];
 const eye = document.getElementById("eye");
 let alive = [];
-for (let i = 1; i <= 100; i++) {
-  const cell = document.createElement("div");
-  cell.setAttribute("class", "cell");
-  cell.setAttribute("onClick", `clicked(${i})`);
-
-  cell.setAttribute("id", i);
-  board.appendChild(cell);
+function placeCells() {
+  for (let i = 1; i <= 100; i++) {
+    const cell = document.createElement("div");
+    cell.setAttribute("class", "cell");
+    cell.setAttribute("onClick", `clicked(${i})`);
+  
+    cell.setAttribute("id", i);
+    board.appendChild(cell);
+  }
 }
+placeCells();
 npcPlaceShips();
 
 function npcPlaceShips() {
@@ -85,8 +88,7 @@ function clicked(i) {
     notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
 
     if (alive.length === 0) {
-      message = "You Win !";
-      notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
+      showEndGameModal()
       // playerWin()
     }
   } else {
@@ -176,4 +178,38 @@ function callNPCAttack(){
 }
 
 // sessionStorage.setItem('playerShipsHits',)
+
+
+function reset() {
+  destroyed = [];
+  alive = [];
+  board.innerHTML = "";
+  placeCells();
+  npcPlaceShips();
+}
+
+
+function showEndGameModal() {
+const endGameModal = document.querySelector(".endGame-modal")
+endGameModal.classList.remove("visually-hidden")
+const endGameMessage = document.querySelector(".endGame-message")
+endGameMessage.innerText = "You win"
+endGameMessage.classList.add("text-success")
+}
+
+
+/*
+HAMAD
+const endGameMessage = document.querySelector(".endGame-message")
+if user wins -> {
+ endGameMessage.innerText = "You Win" 
+ endGameMessage.classList.add("text-success")
+}
+else -> {
+  endGameMessage.innerText = "You Lost"  
+  endGameMessage.classList.add("text-danger")
+}
+
+*/
+
 

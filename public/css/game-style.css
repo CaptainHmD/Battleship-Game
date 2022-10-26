@@ -53,7 +53,6 @@ html {
   display: flex;
   flex-wrap: wrap;
   margin: 1vmin;
-  background-color: none !important;
   width: calc(var(--cell-size) * var(--width));
   height: calc(var(--cell-size) * 0.9);
 }
@@ -86,7 +85,7 @@ html {
 }
 
 #small-0 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/small-00.png");
   background-position: center;
   background-size: 100% 100%;
@@ -94,7 +93,7 @@ html {
 }
 
 #small-1 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/small-11.png");
   background-position: center;
   background-size: 100% 100%;
@@ -103,7 +102,7 @@ html {
 
 
 #medium-0 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/medium-0.png");
   background-position: center;
   background-size: 100% 100% ;
@@ -111,14 +110,14 @@ html {
   border: none;
 }
 #medium-1 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/medium-1.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #medium-2 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/medium-2.png");
   background-position: center;
   background-size: 100% 100%;
@@ -126,63 +125,63 @@ html {
 }
 
 #larg-0 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/larg-0.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #larg-1 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/larg-1.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #larg-2 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/larg-2.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #larg-3 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/larg-3.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #massive-0 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/massive-0.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #massive-1 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/massive-1.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #massive-2 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/massive-2.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #massive-3 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/massive-3.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 #massive-4 {
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: url("../Resources/imgs/massive-4.png");
   background-position: center;
   background-size: 100% 100%;

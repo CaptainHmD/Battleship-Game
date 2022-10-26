@@ -17,8 +17,10 @@
 .hit-usr-ship{
      animation-name: ship-hit;
      animation-duration: 0.5s;
-     animation-iteration-count: 5;
+     animation-iteration-count: 10;
      animation-direction: alternate;
+     animation-fill-mode: forwards;
+     
      background-color:  rgb(218, 22, 22);
  }
  
