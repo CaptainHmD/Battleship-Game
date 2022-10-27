@@ -328,12 +328,13 @@ function removeShipAfterPlacing() {
     if (shipsArray.length === 4) { 
         let ships = document.querySelector(".ship-wrapper");
         ships.classList.add("remove-ship-container");
+        document.querySelector(".scoreboard").classList.add("show-scoreboard")
         //HAMAD make the program stop for 2 sec for all animations to complete
     }
     // ship.remove();
 }
 const elementTimer = document.getElementById('time-counter');
-var timer = 300// =5 min
+var timer = 500// =5 min
 let setTerval;
 function timeCounter() {
     setTerval = setInterval(() => { timeFormat(--timer) }, 1000)

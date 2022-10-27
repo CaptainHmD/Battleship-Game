@@ -15,9 +15,9 @@
 </head>
 
 <body>
-  <div class="scoreboard-wrapper d-flex justify-content-center mt-3 mb-3">
+  <div class="scoreboard-wrapper d-flex justify-content-center mt-3 mb-3 .show-scoreboard-wrapper">
     <div class="scoreboard mt-3">
-      <div class="score-info-container text-info">
+      <div class="score-info-container text-info .show-scoreboard">
         <i class="bi bi-person-fill"></i>
         <h2 id="player-name">Player 1</h2>
       </div>
@@ -42,7 +42,7 @@
     <!--row-->
     <div class="row">
       <div class="ships-container container d-flex justify-content-center">
-        <div class="ship-wrapper d-flex justify-content-center mt-5">
+        <div class="ship-wrapper d-flex justify-content-center mt-5 w-50">
           <div class="flex-display">
             <div class="ship small-ship drag" draggable="true">
               <div id="small-0" class="start"></div>
@@ -91,17 +91,17 @@
   </div>
 
   <!-- bot board modal -->
-  <div class="npc-modal  visually-hidden" id="npc-modal">
-    <div class="npc-modal-body">
-      <i class="clickable-eye bi bi-eye-slash-fill position-absolute top-0 end-0 fs-3 mx-4 mt-2" onclick="highlight()"
-        id="eye"></i>
-      <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-        <p class="fs-3 text-danger text-center">
-          Please choose where do you wanna attack
-        </p>
-        <div class="npc-board board" id="npc-board"></div>
-      </div>
-    </div>
+    <!-- <div class="npc-modal  visually-hidden" id="npc-modal">
+      <div class="npc-modal-body">
+        <i class="clickable-eye bi bi-eye-slash-fill position-absolute top-0 end-0 fs-3 mx-4 mt-2" onclick="highlight()"
+          id="eye"></i>
+        <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+          <p class="fs-3 text-danger text-center">
+            Please choose where do you wanna attack
+          </p>
+          <div class="npc-board board" id="npc-board"></div>
+        </div>
+      </div> -->
 
    <!-- visually-hidden -->
   </div>
@@ -118,7 +118,7 @@
 
 <div class="endGame-modal visually-hidden">
   <div class="endGame-modal-body d-flex flex-column p-5">
-    <h1 class="text-success text-center endGame-message">You Win</h1>
+    <h1 class="text-success text-center endGame-message"></h1>
     <button class="p-4 m-3 menu-btn">Restart</button>
     <button class="p-4 m-3 menu-btn">Main Menu</button>
   </div>

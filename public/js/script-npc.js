@@ -191,9 +191,9 @@ function reset() {
 function showEndGameModal() {
 const endGameModal = document.querySelector(".endGame-modal")
 endGameModal.classList.remove("visually-hidden")
-const endGameMessage = document.querySelector(".endGame-message")
-endGameMessage.innerText = "You win"
-endGameMessage.classList.add("text-success")
+document.querySelector(".npc-modal").classList.add("visually-hidden")
+reset()
+
 }
 
 
@@ -230,6 +230,7 @@ function timeEnd() { //! im gonna call it from script-game file
     endGameMessage.innerText = "Draw Pussies"
     endGameMessage.classList.add("text-danger")
   }
+  showEndGameModal();
   
 }
 
