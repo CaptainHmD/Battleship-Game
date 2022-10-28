@@ -16,7 +16,7 @@
 
 <body>
   <div class="scoreboard-wrapper d-flex justify-content-center mt-3 mb-3 .show-scoreboard-wrapper">
-    <div class="scoreboard mt-3">
+    <div class="scoreboard mt-3 align-items-center">
       <div class="score-info-container text-info .show-scoreboard">
         <i class="bi bi-person-fill"></i>
         <h2 id="player-name">Player 1</h2>
@@ -30,13 +30,15 @@
 
       <div class="score-info-container text-danger">
         <i class="bi bi-cpu-fill"></i>
-        <h2 class="">NPC</h2>
+        <h2 class="">
+          NPC
+        </h2>
       </div>
     </div>
   </div>
 
   <div class="container main-container">
-    <div class="board-container row justify-content-center">
+    <div class="board-container row justify-content-center p-relative">
       <div class="board" id="board"></div>
     </div>
     <!--row-->
@@ -91,7 +93,7 @@
   </div>
 
   <!-- bot board modal -->
-    <!-- <div class="npc-modal  visually-hidden" id="npc-modal">
+    <div class="npc-modal  visually-hidden" id="npc-modal">
       <div class="npc-modal-body">
         <i class="clickable-eye bi bi-eye-slash-fill position-absolute top-0 end-0 fs-3 mx-4 mt-2" onclick="highlight()"
           id="eye"></i>
@@ -101,7 +103,7 @@
           </p>
           <div class="npc-board board" id="npc-board"></div>
         </div>
-      </div> -->
+      </div>
 
    <!-- visually-hidden -->
   </div>

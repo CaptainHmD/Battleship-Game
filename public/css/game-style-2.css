@@ -226,10 +226,11 @@ animation-fill-mode: forwards;
 
 @keyframes show-scoreboard{
      from{
-          transform: translateY(-150%);
+          top:-50%
      }
      to{
-          transform:translateY(0%);
+         top:0%;
+          
      }
 }
 @keyframes hide-npc-board {
@@ -284,18 +285,37 @@ animation-fill-mode: forwards;
      }
 }
 
-.show-scoreboard{
-     display: grid !important;
-     height: 30vh;
-     animation: show-scoreboard 1s forwards ;
+@keyframes board-slide-down {
+     from{
+          transform: translateY(0);
+     }
+     to{
+          transform: translateY(23vh);
+          
+     }
 }
 
 
 
+
+
 @media screen and (max-height:880px) {
+
+     .show-scoreboard{
+          
+          overflow: hidden;
+          height: 18vh;
+          animation-name: show-scoreboard;
+          animation-duration: 1s;
+          
+          animation-fill-mode: forwards;
+          
+     }
      .scoreboard{
-          display: none;
-          transform: translateY(-150%);
+          display: grid;
+          
+          position: absolute;
+          top: -40%;
      }
      .board-container{
           margin-top: 0% !important;
@@ -303,7 +323,15 @@ animation-fill-mode: forwards;
      .npc-modal-body{
           height: 80%;
      }
-     
+     .board-slide-down{
+
+          animation-name: board-slide-down;
+          animation-duration: 1s;
+          animation-delay: 2s;
+          transform: translateY(0);
+          animation-fill-mode: forwards;
+          
+     }
 }
 
 
