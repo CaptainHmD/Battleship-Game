@@ -9,18 +9,18 @@
 
 const board = document.querySelector('#board'); //! game board
 createBoard();
-const cells = document.querySelectorAll('[data-cell]');
+let cells ;
+// let cells = document.querySelectorAll('[data-cell]');
 var shipParts; //!
 const dragAbles = document.querySelectorAll('.drag');
 var lastCellHover; //!
 var shipSize; //!
 var numberOfTheShipPart;
-const EventDelay = 1000;
 const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 const notAllowedHorizontalOnStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-const shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
-const shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
-const shipsValidationByName = [];
+let shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
+let shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
+let shipsValidationByName = [];
 var cellTarget;
 // const notAllowedVertical = [90,]
 // addEvents();
@@ -98,11 +98,15 @@ function onMouseDown(handler) {
 
 
 //! cells
+function cellsEvents(){
+
+cells = document.querySelectorAll('[data-cell]');
 cells.forEach(cell => {
     cell.addEventListener('dragover', dragOverTheCells) //* 1
     cell.addEventListener('drop', addShipsIntoCells, true) //* 2
 })//! end of cells foreach for cells
-
+}
+ cellsEvents()
 
 function dragOverTheCells(handler) { //* 1
 
@@ -153,14 +157,8 @@ function addShipsIntoCells(ship) { //* 2
 function addShipOnBoard() {
 
     lastCellHover = lastCellHover - numberOfTheShipPart; // it will reset to the first part of the ship, if and only if he didn't click on the first part of the ships
+    if(shipParts===0)return
     for (let i = 0; i < shipParts; i++) {
-
-        // if (i === 0) {
-        // lastCellHover = lastCellHover - numberOfTheShipPart; // it will reset to the first part of the ship, if and only if he didn't click on the first part of the ships
-        //     cells.item(lastCellHover).classList.add('start')
-        // } else if (i === (shipParts - 1)) {
-        //     cells.item(lastCellHover + i).classList.add('end')
-        // }
         cells.item(lastCellHover + i).classList.add('placed')
         cells.item(lastCellHover + i).classList.add('ship-placed')
         cells.item(lastCellHover + i).setAttribute('id', `${shipSize}-${i}`)
@@ -335,7 +333,7 @@ function removeShipAfterPlacing() {
     // ship.remove();
 }
 const elementTimer = document.getElementById('time-counter');
-var timer = 303// =5 min
+var timer = 1// =5 min
 let setTerval;
 function timeCounter() {
     setTerval = setInterval(() => { timeFormat(--timer) }, 1000)
@@ -364,6 +362,63 @@ function timeFormat(timeInSecond) {
     }
 }
 
+document.getElementById('restart-button').addEventListener('click',()=>{
+    console.log('restart');
+    reset(); // this function getting called from script-npc file line 182
+    resetEveryThing(); // my function line 376
+    removeEndGameModal()
+})
+document.getElementById('main-menu-button').addEventListener('click',()=>{
+    window.location.href='menu.html'
+})
 
+function resetEveryThing(){
+    shipsIndexOnBoard=[]
+    shipsIndexOnBoardWithGap=[]
+    shipsValidationByName = []
+    shipsArray = []
+    board.innerHTML='' // remove cells in board
+    createBoard();
+    cellsEvents()
+    returnShips()
+}
+function removeEndGameModal(){
+    const endGameModal = document.querySelector(".endGame-modal")
+endGameModal.classList.add("visually-hidden")
+}
+
+function returnShips(){
+    const ship = document.querySelectorAll(`.ship`);
+    ship.forEach(handler =>{
+        handler.setAttribute('draggable', true);
+        handler.classList.remove("placed-ship")
+    })
+    let ships = document.querySelector(".ship-wrapper");
+    ships.classList.remove("remove-ship-container");
+
+        //! jawad slide the board up , and hide scoreboard with animation  , also when when endgame modal pop out add more class to hide the npc board
+        //! jawad it`s very annoying  or do what you want , and fix when user attack and miss the ship , don`t let him to play at this same cell
+        //! jawad check the cell background color i think black is good 
+        // board.classList.remove("board-slide-down") // 
+        //         setTimeout(()=>{document.querySelector(".scoreboard").classList.add("show-scoreboard")},2850)
+    // }
+}
+
+// function removeShipAfterPlacing() {
+//     const ship = document.querySelector(`.${shipSize}-ship`);
+//     ship.setAttribute('draggable', false);
+    // ship.classList.add("placed-ship")
+
+    // shipsArray.push(ship);
+//     console.log(shipsArray.length)
+//     if (shipsArray.length === 4) { 
+//         let ships = document.querySelector(".ship-wrapper");
+//         ships.classList.add("remove-ship-container");
+//         board.classList.add("board-slide-down")
+//         setTimeout(()=>{document.querySelector(".scoreboard").classList.add("show-scoreboard")},2850)
+//         //HAMAD make the program stop for 2 sec for all animations to complete
+//     }
+//     // ship.remove();
+// }
 
 

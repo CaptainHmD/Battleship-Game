@@ -21,8 +21,8 @@
      animation-direction: alternate;
      animation-fill-mode: forwards;
      
-     background-color:  rgb(218, 22, 22);
- }
+     background-color:  rgb(11, 4, 4);
+}
  
  @keyframes ship-hit {
       from{
@@ -31,12 +31,12 @@
            background-position: center;
            background-size: 70%  70%;
            background-repeat: no-repeat;
-           background-color:  rgb(218, 22, 22);
+           background-color:  rgb(22, 22, 22);
           }
       to{
           /* background-image:url('../Resources/icons/rocket-removebg-preview.png'); */
           
-          background-color: rgb(129, 0, 0);
+          background-color: rgb(52, 50, 50);
       }
  }
  

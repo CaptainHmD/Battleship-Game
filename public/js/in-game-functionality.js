@@ -6,7 +6,7 @@ function retrievePlayerShipIndex() {
 }
 
 
-const previousIndexAttack = [];
+let previousIndexAttack = [];
 function randomAttack() {
     do {
         const randomNum = Math.floor(Math.random() * 100);
@@ -94,6 +94,11 @@ function whoWin(){
     else if (BotHits>playerHits)
     return "npc"
     else return "draw"
+}
+
+function resetFunctionality(){ // i did`t test it yet
+    previousIndexAttack = []
+    NPCShipsIndex = sessionStorage.getItem('alive').split(',')
 }
 
 
