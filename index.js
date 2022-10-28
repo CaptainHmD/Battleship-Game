@@ -17,20 +17,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 //! routes
-app.get('/', (req, res) => {
+app.get('/(.html)?', (req, res) => {
   res.sendFile(path.join('public', 'views', 'menu.html'), { root: root })
 });
 app.get('/game(.html)?', (req, res) => {
   res.sendFile(path.join('public', 'views', 'game.html'), { root: root })
 
 })
-
-app.get('/test', (req, res) => {
-  res.sendFile(path.join('public', 'views', 'index.html'), { root: root })
-});
-app.get('/rules', (req, res) => {
-  res.sendFile(path.join('public', 'views', 'rules.html'), { root: root })
-});
 
 app.listen(PORT, () => {
   console.log('server is listing on Port: ', PORT);

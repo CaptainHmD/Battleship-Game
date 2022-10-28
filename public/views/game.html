@@ -121,8 +121,9 @@
 <div class="endGame-modal visually-hidden">
   <div class="endGame-modal-body d-flex flex-column p-5">
     <h1 class="text-success text-center endGame-message"></h1>
-    <button class="p-4 m-3 menu-btn" id="restart-button" >Restart</button>
-    <button class="p-4 m-3 menu-btn" id="main-menu-button" >Main Menu</button>
+    <form onsubmit="return false"><button class="p-4 m-3 menu-btn w-100" id="restart-button" >Restart</button></form>
+    <form action="/" method="get" ><button class="p-4 m-3 menu-btn w-100" id="main-menu-button" >Main Menu</button>
+    </form>
   </div>
 </div>
 
