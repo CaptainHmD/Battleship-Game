@@ -339,15 +339,22 @@ animation-fill-mode: forwards;
 
 @media screen and (max-height:880px) {
 
+     .score-info-container{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          font-size: 2rem;
+     
+     }
      .show-scoreboard{
           
           overflow: hidden;
           height: 18vh;
           animation-name: show-scoreboard;
           animation-duration: 1s;
-          
           animation-fill-mode: forwards;
-          
      }
 
      .hide-scoreboard{
@@ -364,7 +371,6 @@ animation-fill-mode: forwards;
 
      .scoreboard{
           display: grid;
-          
           position: absolute;
           top: -40%;
      }
