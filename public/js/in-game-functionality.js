@@ -17,7 +17,7 @@ function randomAttack() {
 
 }
 function NPCAttack(playerHitCount){
-    winner()
+    
     if(playerHitCount===null)return
     playerHits=playerHitCount
     const NPCIndexAttack = randomAttack();
