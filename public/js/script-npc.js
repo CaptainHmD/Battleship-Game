@@ -1,5 +1,6 @@
 const board = document.getElementById("npc-board");
 let destroyed = [];
+let chosen = [];
 const eye = document.getElementById("eye");
 let alive = [];
 let endGame = false;
@@ -72,10 +73,11 @@ function npcPlaceShips() {
 function clicked(i) {
   const notification = document.getElementById("target-alert");
   let message = "Missed The Target";
-
-  if (destroyed.includes(i)) {
+  
+  if (chosen.includes(i) ) {
     return;
   }
+  
   notification.classList.add("slide-down-alert");
   let dead = document.getElementById(i);
   
@@ -88,13 +90,14 @@ function clicked(i) {
 
     if (alive.length === 0) {
       showEndGameModal()
-      // playerWin()
+      timer= 1
     }
     playerHit++;
   } else {
     dead.classList.add("miss-npc-ship")
     notification.innerHTML = `<h2 class="text-center text-danger fs-2">${message}</h2>`;
   }
+  chosen.push(i);
 
   setTimeout(() => {
     notification.classList.remove("slide-down-alert");
@@ -170,11 +173,11 @@ function callNPCAttack(){
   NPCAttack(playerHit);
 }
 
-// sessionStorage.setItem('playerShipsHits',)
 
 
 function reset() {
   destroyed = [];
+  chosen = [];
   alive = [];
   board.innerHTML = "";
   placeCells();

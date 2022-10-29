@@ -24,7 +24,6 @@ hr{
      opacity: 1 !important;
      border-radius:30px;
      
-     /* border:5px solid rgb(255, 0, 0) !important; */
 }
 
 a{
@@ -231,12 +230,4 @@ header{
           border-radius: 0;
      }
 
-
-
-
-
-
-     ul{
-      
-     }
 }

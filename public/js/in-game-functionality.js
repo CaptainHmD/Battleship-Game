@@ -3,7 +3,7 @@ let playerShipsIndex;
 function retrievePlayerShipIndex() {
     playerShipsIndex = sessionStorage.getItem('shipsIndexOnBoard').split(',')
 }
-
+var timer// must be 300 =5 min
 
 let previousIndexAttack = [];
 function randomAttack() {
@@ -26,6 +26,7 @@ function NPCAttack(playerHitCount){
     }, 2000);
 }
  var BotHits = 0;
+
  var playerHits = 0;
  
 function attackEffect(NPCIndexAttack){
@@ -34,17 +35,21 @@ function attackEffect(NPCIndexAttack){
     let message 
 
     attackBoardEffect(NPCIndexAttack)
+
     const attackState = playerShipsIndex.includes(NPCIndexAttack+'')// hit  . why +'' because session storage return values on String type so +'' matched the types
     let textHighLight
-    if(attackState){
+    if(attackState){// hit
         BotHits++
         message = "NPC Attack Hits"
         textHighLight = 'text-success'
-
+        
     }else{ // miss
         message = "NPC Attack Missed"
         textHighLight = 'text-danger'
 
+    }
+    if(BotHits===14){
+        timer = 1
     }
     attackBoardEffect(NPCIndexAttack,attackState)
 
@@ -83,6 +88,8 @@ function whoWin(){
 }
 
 function resetFunctionality(){ // i did`t test it yet
+    BotHits=0
+    playerHits=0
     previousIndexAttack = []
     NPCShipsIndex = sessionStorage.getItem('alive').split(',')
 }

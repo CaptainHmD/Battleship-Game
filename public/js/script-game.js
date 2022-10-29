@@ -278,7 +278,7 @@ function removeShipAfterPlacing() {
     // ship.remove();
 }
 const elementTimer = document.getElementById('time-counter');
-var timer// must be 300 =5 min
+
 resetTime()
 let setTerval;
 function timeCounter() {
@@ -308,6 +308,12 @@ function timeFormat(timeInSecond) {
     }
 }
 
+function resetTimeTervalOnEndGame(){
+    console.log('reset');
+    timeEnd()
+    clearInterval(setTerval);
+    timer=0
+}
 document.getElementById('restart-button').addEventListener('click',()=>{
     restartBtnClicked();
 })
