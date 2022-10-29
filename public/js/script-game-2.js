@@ -2,8 +2,12 @@
 
 
 function confirmName() {
+
+     document.querySelector(".ship-wrapper").classList.add("get-ship-container")
+
+
     const playerName = document.getElementById("player-name");
-     const inputName = document.getElementById("username");
+    const inputName = document.getElementById("username");
      let name = inputName.value;
 
      if (name.replace(/\s/g, '').length === 0) { 

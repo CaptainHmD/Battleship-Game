@@ -173,11 +173,12 @@ function addShipOnBoard() {
         retrievePlayerShipIndex()
         timeCounter();
         setTimeout(() => {
+            if (endGame) return;
+            
             let npcBoard = document.querySelector('.npc-modal'); 
             let npcBoardBody = document.querySelector('.npc-modal-body');
             npcBoard.classList.remove('visually-hidden') 
             npcBoardBody.classList.add('show-npc-board')
-
         }, 3850)
     }
 }
@@ -326,14 +327,18 @@ function removeShipAfterPlacing() {
     if (shipsArray.length === 4) { 
         let ships = document.querySelector(".ship-wrapper");
         ships.classList.add("remove-ship-container");
+        document.querySelector(".scoreboard").classList.remove("hide-scoreboard");
         board.classList.add("board-slide-down")
-        setTimeout(()=>{document.querySelector(".scoreboard").classList.add("show-scoreboard")},2850)
+        setTimeout(() => {
+            document.querySelector(".scoreboard").classList.add("show-scoreboard")
+            
+        }, 1850)
         //HAMAD make the program stop for 2 sec for all animations to complete
     }
     // ship.remove();
 }
 const elementTimer = document.getElementById('time-counter');
-var timer = 1// =5 min
+var timer = 10// =5 min
 let setTerval;
 function timeCounter() {
     setTerval = setInterval(() => { timeFormat(--timer) }, 1000)
@@ -363,16 +368,23 @@ function timeFormat(timeInSecond) {
 }
 
 document.getElementById('restart-button').addEventListener('click',()=>{
-    console.log('restart');
+    restartBtnClicked();
+})
+
+function restartBtnClicked() {
+    const boardModal = document.querySelector('.npc-modal');
+    boardModal.style.visibility = "visible"
+    timer = 10;
     reset(); // this function getting called from script-npc file line 182
     resetEveryThing(); // my function line 376
     removeEndGameModal()
-})
+}
+
 document.getElementById('main-menu-button').addEventListener('click',()=>{
     window.location.href='menu.html'
 })
 
-function resetEveryThing(){
+function resetEveryThing() {
     shipsIndexOnBoard=[]
     shipsIndexOnBoardWithGap=[]
     shipsValidationByName = []
@@ -384,7 +396,7 @@ function resetEveryThing(){
 }
 function removeEndGameModal(){
     const endGameModal = document.querySelector(".endGame-modal")
-endGameModal.classList.add("visually-hidden")
+    endGameModal.classList.add("visually-hidden")
 }
 
 function returnShips(){
@@ -394,8 +406,17 @@ function returnShips(){
         handler.classList.remove("placed-ship")
     })
     let ships = document.querySelector(".ship-wrapper");
-    ships.classList.remove("remove-ship-container");
+    document.querySelector(".scoreboard").classList.add("hide-scoreboard");
+    document.querySelector(".ship-wrapper").classList.add("get-ship-container");
+    document.querySelector(".board").classList.add("board-slide-up");
+    setTimeout(() => {
+        document.querySelector(".scoreboard").classList.remove("show-scoreboard");
+        ships.classList.remove("remove-ship-container");
+        document.querySelector(".board").classList.remove("board-slide-down");
+        
 
+    }, 2500);
+    
         //! jawad slide the board up , and hide scoreboard with animation  , also when when endgame modal pop out add more class to hide the npc board
         //! jawad it`s very annoying  or do what you want , and fix when user attack and miss the ship , don`t let him to play at this same cell
         //! jawad check the cell background color i think black is good 

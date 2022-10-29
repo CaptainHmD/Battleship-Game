@@ -68,6 +68,7 @@ border-radius: var(--border-radius);
 width: 70%;
 height: auto;
 z-index: 1;
+transform: translateY(300%);
 
 }
 
@@ -217,9 +218,14 @@ animation-fill-mode: forwards;
 
 }
 
-.remove-ship-container{
-     animation: slide-down-ship-container 0.8s 0.5s forwards;
+.get-ship-container{
+     
+     animation: slide-up-ship-container 1s forwards;
 }
+.remove-ship-container{
+     animation: slide-down-ship-container 1s forwards;
+}
+
 
 
 
@@ -233,6 +239,18 @@ animation-fill-mode: forwards;
           
      }
 }
+
+@keyframes hide-scoreboard{
+     from{
+          top:0%
+     }
+     to{
+         top:-50%;
+          
+     }
+}
+
+
 @keyframes hide-npc-board {
      from{
           transform: translateY(0%);
@@ -265,6 +283,15 @@ animation-fill-mode: forwards;
      }
 }
 
+@keyframes slide-up-ship-container{
+     from{
+     transform: translateY(300%);
+          
+     }
+     to{
+          transform: translateY(0%);
+     }
+}
 
 
 @keyframes slide-down-alert {
@@ -282,6 +309,17 @@ animation-fill-mode: forwards;
      }
      to{
           top:-20%;
+     }
+}
+
+
+@keyframes board-slide-up {
+     from{
+          transform: translateY(23vh);
+     }
+     to{
+          transform: translateY(0);
+          
      }
 }
 
@@ -311,6 +349,19 @@ animation-fill-mode: forwards;
           animation-fill-mode: forwards;
           
      }
+
+     .hide-scoreboard{
+          
+          overflow: hidden;
+          height: 18vh;
+          animation-name: hide-scoreboard;
+          animation-duration: 1s;
+          
+          animation-fill-mode: forwards;
+          
+     }
+
+
      .scoreboard{
           display: grid;
           
@@ -323,6 +374,15 @@ animation-fill-mode: forwards;
      .npc-modal-body{
           height: 80%;
      }
+     .board-slide-up{
+
+          animation-name: board-slide-up;
+          animation-duration: 1s;
+          transform: translateY(23vh);
+          animation-fill-mode: forwards;
+          
+     }
+
      .board-slide-down{
 
           animation-name: board-slide-down;
@@ -332,6 +392,8 @@ animation-fill-mode: forwards;
           animation-fill-mode: forwards;
           
      }
+
+
 }
 
 

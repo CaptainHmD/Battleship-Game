@@ -2,6 +2,7 @@ const board = document.getElementById("npc-board");
 let destroyed = [];
 const eye = document.getElementById("eye");
 let alive = [];
+let endGame = false;
 function placeCells() {
   for (let i = 1; i <= 100; i++) {
     const cell = document.createElement("div");
@@ -76,14 +77,13 @@ function clicked(i) {
     return;
   }
   notification.classList.add("slide-down-alert");
-
+  let dead = document.getElementById(i);
+  dead.classList.add("hit-npc-ship")
   if (alive.includes(i)) {
     destroyed.push(i);
     alive.splice(alive.indexOf(i), 1);
 
-    let dead = document.getElementById(i);
-    dead.style.background = "red";
-    dead.style.cursor = "not-allowed";
+   
     message = "Target Has Been Hit";
     notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
 
@@ -154,13 +154,14 @@ async function HideModal() {
   await timeout(6000, boardModal,boardModalBody, alter);
   console.log('destroyed', destroyed);
 }
-function timeout(ms, boardModal,boardModalBody, alter) {
+function timeout(ms, boardModal, boardModalBody, alter) {
+  if (endGame) return;
   callNPCAttack();
   return new Promise(() => setTimeout(() => {
     boardModal.classList.remove('visually-hidden');
     boardModalBody.classList.remove("hide-npc-board");
     boardModalBody.classList.add("show-npc-board")
-      alter.classList.remove('gigachad-index');
+    alter.classList.remove('gigachad-index');
      
   }, ms));
 }
@@ -180,6 +181,9 @@ function callNPCAttack(){
 
 
 function reset() {
+  endGame = true;
+  let npcModal = document.querySelector(".npc-modal");
+  npcModal.style.visibility = "hidden";
   destroyed = [];
   alive = [];
   board.innerHTML = "";
@@ -189,10 +193,10 @@ function reset() {
 
 
 function showEndGameModal() {
+endGame = true;
 const endGameModal = document.querySelector(".endGame-modal")
 endGameModal.classList.remove("visually-hidden")
-document.querySelector(".npc-modal").classList.add("visually-hidden")
-reset()
+  reset()
 
 }
 
@@ -211,6 +215,7 @@ else -> {
 */
 function timeEnd() { //! im gonna call it from script-game file
   console.log('end');
+
   const winner = whoWin(); // return the Winner , player  for player && npc for bot || draw for fucking draw 
   const endGameMessage = document.querySelector(".endGame-message")
   if (winner === "player") {

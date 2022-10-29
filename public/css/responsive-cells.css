@@ -23,6 +23,10 @@
      
      background-color:  rgb(11, 4, 4);
 }
+
+.hit-npc-ship{
+ background-color: red;
+}
  
  @keyframes ship-hit {
       from{
