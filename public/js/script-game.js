@@ -372,10 +372,10 @@ document.getElementById('restart-button').addEventListener('click',()=>{
 })
 
 function restartBtnClicked() {
+    endGame=false;
     const boardModal = document.querySelector('.npc-modal');
-    boardModal.style.visibility = "visible"
+    boardModal.classList.add("visually-hidden")
     timer = 10;
-    reset(); // this function getting called from script-npc file line 182
     resetEveryThing(); // my function line 376
     removeEndGameModal()
 }
@@ -413,8 +413,8 @@ function returnShips(){
         document.querySelector(".scoreboard").classList.remove("show-scoreboard");
         ships.classList.remove("remove-ship-container");
         document.querySelector(".board").classList.remove("board-slide-down");
-        
-
+        document.querySelector(".npc-modal").removeAttribute('style');
+        document.querySelector(".npc-modal-body").classList.remove("show-npc-board")
     }, 2500);
     
         //! jawad slide the board up , and hide scoreboard with animation  , also when when endgame modal pop out add more class to hide the npc board

@@ -181,9 +181,6 @@ function callNPCAttack(){
 
 
 function reset() {
-  endGame = true;
-  let npcModal = document.querySelector(".npc-modal");
-  npcModal.style.visibility = "hidden";
   destroyed = [];
   alive = [];
   board.innerHTML = "";
@@ -193,10 +190,11 @@ function reset() {
 
 
 function showEndGameModal() {
-endGame = true;
+  let npcModal = document.querySelector(".npc-modal");
+  npcModal.style.visibility = "hidden";
 const endGameModal = document.querySelector(".endGame-modal")
 endGameModal.classList.remove("visually-hidden")
-  reset()
+ reset()
 
 }
 
