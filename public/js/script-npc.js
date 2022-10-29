@@ -78,12 +78,11 @@ function clicked(i) {
   }
   notification.classList.add("slide-down-alert");
   let dead = document.getElementById(i);
-  dead.classList.add("hit-npc-ship")
+  
   if (alive.includes(i)) {
+    dead.classList.add("hit-npc-ship")
     destroyed.push(i);
-    alive.splice(alive.indexOf(i), 1);
-
-   
+    alive.splice(alive.indexOf(i), 1);   
     message = "Target Has Been Hit";
     notification.innerHTML = `<h2 class="text-center text-success fs-2">${message}</h2>`;
 
@@ -93,6 +92,7 @@ function clicked(i) {
     }
     playerHit++;
   } else {
+    dead.classList.add("miss-npc-ship")
     notification.innerHTML = `<h2 class="text-center text-danger fs-2">${message}</h2>`;
   }
 
@@ -109,7 +109,6 @@ function clicked(i) {
     //     modal.classList.add("visually-hidden");
   }, 1600);
   HideModal(); // hide the board modal for few second
-  winner(); // in-game-functionality file
 }
 
 function hide() {
@@ -151,8 +150,7 @@ async function HideModal() {
   }, 1850)
   boardModal.classList.remove("show-npc-board");
   
-  await timeout(6000, boardModal,boardModalBody, alter);
-  console.log('destroyed', destroyed);
+  await timeout(3500, boardModal,boardModalBody, alter);
 }
 function timeout(ms, boardModal, boardModalBody, alter) {
   if (endGame) return;
@@ -166,13 +164,8 @@ function timeout(ms, boardModal, boardModalBody, alter) {
   }, ms));
 }
 var playerHit=0;
-/*
 
-*/
-function test(){
-  console.log('playerHit: ',playerHit);
-  
-}
+
 function callNPCAttack(){
   NPCAttack(playerHit);
 }
@@ -199,38 +192,22 @@ endGameModal.classList.remove("visually-hidden")
 }
 
 
-/*
-HAMAD
-const endGameMessage = document.querySelector(".endGame-message")
-if user wins -> {
- endGameMessage.innerText = "You Win" 
- endGameMessage.classList.add("text-success")
-}
-else -> {
-  endGameMessage.innerText = "You Lost"  
-  endGameMessage.classList.add("text-danger")
-}
-*/
 function timeEnd() { //! im gonna call it from script-game file
-  console.log('end');
 
   const winner = whoWin(); // return the Winner , player  for player && npc for bot || draw for fucking draw 
   const endGameMessage = document.querySelector(".endGame-message")
   if (winner === "player") {
 
-    console.log(winner,' p');
     endGameMessage.innerText = "You Win"
     endGameMessage.classList.add("text-success")
 
   } else if (winner === "npc") {
-    console.log(winner,' b');
 
     endGameMessage.innerText = "You Lost"
     endGameMessage.classList.add("text-danger")
 
   }else{
-    console.log(winner ,'draw');
-    endGameMessage.innerText = "Draw Pussies"
+    endGameMessage.innerText = "Draw !!!"
     endGameMessage.classList.add("text-danger")
   }
   showEndGameModal();

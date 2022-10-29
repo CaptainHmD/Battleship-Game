@@ -1,8 +1,8 @@
-:root{
+:root {
      --cell-size: 55px;
-}
-
-.cell {
+   }
+   
+   .cell {
      width: var(--cell-size);
      height: var(--cell-size);
      border: 1.5px solid white;
@@ -10,76 +10,106 @@
      justify-content: center; /*col*/
      align-items: center; /*row*/
      position: relative;
-     
    }
-
-
-.hit-usr-ship{
+   
+   .hit-usr-ship {
      animation-name: ship-hit;
      animation-duration: 0.5s;
-     animation-iteration-count: 10;
+     animation-iteration-count: 4;
      animation-direction: alternate;
      animation-fill-mode: forwards;
-     
-     background-color:  rgb(11, 4, 4);
-}
+   
+     background-color: rgb(11, 4, 4);
+   }
+   
+   .hit-npc-ship {
+     animation: hit-npc 0.5s 4 alternate forwards;
+     background-size: 80% 80%;
+     background-image: url('../Resources/icons/external-medieval-medieval-others-maxicons-50.png');
+     background-position: center;
+      background-repeat: no-repeat;
+   }
+   .miss-npc-ship {
+     animation: miss-npc 0.5s 4 alternate forwards;
+     background-size: 80% 80%;
+     background-image: url('../Resources/icons/external-medieval-medieval-others-maxicons-50.png');
+     background-position: center;
+      background-repeat: no-repeat;
+   }
+   
+   @keyframes miss-npc {
+     from {
+            
+          background-color: rgb(130, 27, 27);
 
-.hit-npc-ship{
- background-color: red;
-}
- 
- @keyframes ship-hit {
-      from{
-          background-image:url('../Resources/icons/rocket-removebg-preview.png');
-
-           background-position: center;
-           background-size: 70%  70%;
-           background-repeat: no-repeat;
-           background-color:  rgb(22, 22, 22);
-          }
-      to{
-          /* background-image:url('../Resources/icons/rocket-removebg-preview.png'); */
-          
-          background-color: rgb(52, 50, 50);
       }
- }
- 
-
-
-@media screen and (max-width:2560px){
-     :root{
-          --cell-size:55px
+      to {
+         background-color: rgb(91, 32, 32);
+         background-size: 60% 60% ;
+      }
+   }
+   @keyframes hit-npc {
+        from {
+            
+              background-color: rgb(15, 61, 153);
+   
+          }
+          to {
+               background-color: rgb(16, 32, 63);
+               background-size: 60% 60% ;
+          }
+   }
+   
+   @keyframes ship-hit {
+     from {
+       background-image: url("../Resources/icons/rocket-removebg-preview.png");
+       background-position: center;
+       background-size: 70% 70%;
+       background-repeat: no-repeat;
+       background-color: rgb(22, 22, 22);
      }
-}
-
-@media screen and (max-width:1920px){
-     :root{
-          --cell-size:45px
+     to {
+       background-image:url('../Resources/icons/rocket-removebg-preview.png');
+       background-position: center;
+       background-size: 50% 50%;
+       background-repeat: no-repeat;
+       background-color: rgb(52, 50, 50);
      }
-
-}
-
-@media screen and (max-width:1500) {
-     :root{
-          --cell-size:35px;
+   }
+   
+   @media screen and (max-width: 2560px) {
+     :root {
+       --cell-size: 55px;
      }
-}
-
-@media screen and (max-width:450px){
-     :root{
-          --cell-size:35px
+   }
+   
+   @media screen and (max-width: 1920px) {
+     :root {
+       --cell-size: 45px;
      }
-}
-
-@media screen and (max-width:360px){
-     :root{
-          --cell-size:10vw;
+   }
+   
+   @media screen and (max-width: 1500) {
+     :root {
+       --cell-size: 35px;
      }
-}
-
-
-@media screen and (max-height:650px) {
-     :root{
-          --cell-size:32px;
+   }
+   
+   @media screen and (max-width: 450px) {
+     :root {
+       --cell-size: 35px;
      }
-}
+   }
+   
+   @media screen and (max-width: 360px) {
+     :root {
+       --cell-size: 10vw;
+     }
+   }
+   
+   @media screen and (max-height: 650px) {
+     :root {
+       --cell-size: 32px;
+     }
+   }
+   

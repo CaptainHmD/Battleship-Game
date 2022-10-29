@@ -2,7 +2,6 @@ const NPCShipsIndex = sessionStorage.getItem('alive').split(',')
 let playerShipsIndex;
 function retrievePlayerShipIndex() {
     playerShipsIndex = sessionStorage.getItem('shipsIndexOnBoard').split(',')
-    console.log(playerShipsIndex);
 }
 
 
@@ -22,7 +21,6 @@ function NPCAttack(playerHitCount){
     if(playerHitCount===null)return
     playerHits=playerHitCount
     const NPCIndexAttack = randomAttack();
-    console.log('NPMIndexAttack: ',NPCIndexAttack);
     setTimeout(() => {
         attackEffect(NPCIndexAttack);
     }, 2000);
@@ -34,7 +32,6 @@ function attackEffect(NPCIndexAttack){
     const notification = document.getElementById("target-alert");
     notification.classList.add("slide-down-alert");
     let message 
-    console.log('NPMIndexAttack: ',NPCIndexAttack);
 
     attackBoardEffect(NPCIndexAttack)
     const attackState = playerShipsIndex.includes(NPCIndexAttack+'')// hit  . why +'' because session storage return values on String type so +'' matched the types
@@ -64,7 +61,6 @@ function attackEffect(NPCIndexAttack){
         notification.classList.remove("slide-up-alert");
       }, 1600);
 }
-test();
 
 
 function attackBoardEffect(NPCIndexAttack,attackState){
@@ -76,19 +72,9 @@ function attackBoardEffect(NPCIndexAttack,attackState){
         cells.item(NPCIndexAttack).classList.add("hit-usr-ship")
     }
 }
-function winner(){
-    console.log('playerHit: ', playerHit);
-    console.log('BotHits: ', BotHits);
 
-    if(playerHit===14){
-console.log('player win');
-    }else if(BotHits===14){
-        console.log('bot win');
-    }
-}
 function whoWin(){
-    console.log('playerHits: ',playerHits);
-    console.log('BotHits: ',BotHits);
+
     if(playerHits>BotHits)
     return "player"
     else if (BotHits>playerHits)

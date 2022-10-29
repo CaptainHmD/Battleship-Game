@@ -1,16 +1,8 @@
-// import {player} from './js-classes/player.js'
-// import {game} from './js-classes/game.js'
-
-// const playerTest = new player();
-// const gameTest = new game();
-// console.log(playerTest.test);
-// console.log(gameTest.test);
 
 
 const board = document.querySelector('#board'); //! game board
 createBoard();
 let cells ;
-// let cells = document.querySelectorAll('[data-cell]');
 var shipParts; //!
 const dragAbles = document.querySelectorAll('.drag');
 var lastCellHover; //!
@@ -21,9 +13,8 @@ const notAllowedHorizontalOnStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 let shipsIndexOnBoard = []; //TODO: the values will be pushed when the ships placed
 let shipsIndexOnBoardWithGap = []; //TODO: the values will be pushed when the ships placed
 let shipsValidationByName = [];
+let shipsArray = [];
 var cellTarget;
-// const notAllowedVertical = [90,]
-// addEvents();
 
 
 function createBoard() {
@@ -36,41 +27,9 @@ function createBoard() {
     }
 }
 
-// function addEvents() {
-//     cells.forEach(cell => {
-//         cell.addEventListener('click', myClickHandler)
-//     }
-//     )
-// }
-// function removeEvent() {
-//     cells.forEach(cell => {
-//         cell.removeEventListener('click', myClickHandler)
-//     })
-// }
-
-
-// function myClickHandler(handler) {
-//     const tar = handler.target;
-
-//     if (tar.classList.contains('placed')) return // if the cell was clicked  don`t do anything
-
-//     console.log("Parent:", Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)) //TODO:  delete later ******* 
-//     tar.innerHTML = 'clicked' //TODO:  delete later ******* 
-//     place(tar)
-//     EventTimeHandler();
-
-// }
-
-// function EventTimeHandler() {
-//     removeEvent();
-//     setTimeout(() => {
-//         addEvents();
-//     }, EventDelay)
-// }
-// const place = (cell) => { cell.classList.add('placed') }
-
 //! ships
 dragAbles.forEach(ships => {
+    //click
     ships.addEventListener('dragstart', ship => { onDragStart(ship, ships) })
     ships.addEventListener('dragend', onDragEnd(ships))
     ships.addEventListener('mousedown', onMouseDown)
@@ -78,7 +37,6 @@ dragAbles.forEach(ships => {
 
 function onDragStart(ship, ships) {
     ships.classList.add('dragging'); //* for some effects
-    console.log(ship.target);
     shipParts = ship.path[0].children.length;//* to get number of  ships part 
 }
 function onDragEnd(ships) {
@@ -87,12 +45,9 @@ function onDragEnd(ships) {
 }
 
 function onMouseDown(handler) {
-    console.log(handler.target);
     cellTarget = handler.target;
     shipSize = (handler.target.id).split('-')[0]
     numberOfTheShipPart = parseInt((handler.target.id).split('-')[1])
-    console.log('shipSize:\t', shipSize); //* for knowing what is the size of the ship that has been clicked
-    console.log('click:\t', numberOfTheShipPart); //* for knowing where is the parts the has been clicked
 }
 
 
@@ -111,31 +66,23 @@ cells.forEach(cell => {
 function dragOverTheCells(handler) { //* 1
 
     handler.preventDefault()// cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
-    // console.log(handler);
     if (handler.target.classList.contains('placed')) { // any cells that have placed class 
-        // console.log('tar\n\n', handler.target.classList.contains('placed'));
     }
     lastCellHover = Array.from(handler.currentTarget.parentNode.children).indexOf(handler.currentTarget)
-    // console.log(lastCellHover);
 } // end of dragOverTheCells
 
 
-/*
-const notAllowedHorizontalOnEnd = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99]
-const notAllowedHorizontalOnEStart = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
-*/
 
-// var cellTarget;
+
 //! (shipParts) number of all parts in the ship that been clicked on 
 //! (lastCellHover)  number of cell that user was hover on
 //! (numberOfTheShipPart) what is the part of the ship that user clicked on
 //! (shipSize) ship size (: but in text
 function addShipsIntoCells(ship) { //* 2
-    console.log('drop');
-    console.log('lastCellHover: ', lastCellHover);
-    console.log('shipParts: ', shipParts);
-    console.log('numberOfTheShipPart: ', numberOfTheShipPart);
-    console.log('shipSize ', shipSize);
+    // console.log('lastCellHover: ', lastCellHover);
+    // console.log('shipParts: ', shipParts);
+    // console.log('numberOfTheShipPart: ', numberOfTheShipPart);
+    // console.log('shipSize ', shipSize);
     //TODO: conditions for the invalid drop cells
     if (invalidCellsAtTheEnd()) return
     if (invalidCellsAtTheStart()) return
@@ -311,19 +258,12 @@ function verifyIfShipsOnTheWay() {
     return false
 }
 
-let shipsArray = [];
-//HAMAD
-//this is a temporary solution u can do it later on
-/*I want when all the ships are removed add an animation class I will provide for you later to the ships container
-to slide down so the scoreboard is visible for the user
-*/
 
 function removeShipAfterPlacing() {
     const ship = document.querySelector(`.${shipSize}-ship`);
     ship.setAttribute('draggable', false);
     ship.classList.add("placed-ship")
     shipsArray.push(ship);
-    console.log(shipsArray.length)
     if (shipsArray.length === 4) { 
         let ships = document.querySelector(".ship-wrapper");
         ships.classList.add("remove-ship-container");
@@ -338,7 +278,8 @@ function removeShipAfterPlacing() {
     // ship.remove();
 }
 const elementTimer = document.getElementById('time-counter');
-var timer = 10// =5 min
+var timer// must be 300 =5 min
+resetTime()
 let setTerval;
 function timeCounter() {
     setTerval = setInterval(() => { timeFormat(--timer) }, 1000)
@@ -375,7 +316,7 @@ function restartBtnClicked() {
     endGame=false;
     const boardModal = document.querySelector('.npc-modal');
     boardModal.classList.add("visually-hidden")
-    timer = 10;
+    timer = 302;
     resetEveryThing(); // my function line 376
     removeEndGameModal()
 }
@@ -417,29 +358,16 @@ function returnShips(){
         document.querySelector(".npc-modal-body").classList.remove("show-npc-board")
     }, 2500);
     
-        //! jawad slide the board up , and hide scoreboard with animation  , also when when endgame modal pop out add more class to hide the npc board
-        //! jawad it`s very annoying  or do what you want , and fix when user attack and miss the ship , don`t let him to play at this same cell
-        //! jawad check the cell background color i think black is good 
-        // board.classList.remove("board-slide-down") // 
-        //         setTimeout(()=>{document.querySelector(".scoreboard").classList.add("show-scoreboard")},2850)
-    // }
+
 }
 
-// function removeShipAfterPlacing() {
-//     const ship = document.querySelector(`.${shipSize}-ship`);
-//     ship.setAttribute('draggable', false);
-    // ship.classList.add("placed-ship")
 
-    // shipsArray.push(ship);
-//     console.log(shipsArray.length)
-//     if (shipsArray.length === 4) { 
-//         let ships = document.querySelector(".ship-wrapper");
-//         ships.classList.add("remove-ship-container");
-//         board.classList.add("board-slide-down")
-//         setTimeout(()=>{document.querySelector(".scoreboard").classList.add("show-scoreboard")},2850)
-//         //HAMAD make the program stop for 2 sec for all animations to complete
-//     }
-//     // ship.remove();
-// }
+function resetTime() {
+    if (window.innerHeight <= 880) {
+        timer = 302;
+    }
+    else timer = 300;
+}
+
 
 
