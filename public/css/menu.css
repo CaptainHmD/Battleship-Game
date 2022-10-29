@@ -142,7 +142,13 @@ header{
 
 
 
+@media screen and (max-height:700px) {
 
+     .my-modal-body{
+          min-height: 80%;
+          max-height: 95%;
+     }
+}
 
 @media screen and (max-width:1250px) {
 
