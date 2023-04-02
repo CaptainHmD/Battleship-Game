@@ -37,7 +37,7 @@ dragAbles.forEach(ships => {
 
 function onDragStart(ship, ships) {
     ships.classList.add('dragging'); //* for some effects
-    shipParts = ship.path[0].children.length;//* to get number of  ships part 
+    shipParts = ship.target.childElementCount;//* to get number of  ships part 
 }
 function onDragEnd(ships) {
 
@@ -78,11 +78,7 @@ function dragOverTheCells(handler) { //* 1
 //! (lastCellHover)  number of cell that user was hover on
 //! (numberOfTheShipPart) what is the part of the ship that user clicked on
 //! (shipSize) ship size (: but in text
-function addShipsIntoCells(ship) { //* 2
-    // console.log('lastCellHover: ', lastCellHover);
-    // console.log('shipParts: ', shipParts);
-    // console.log('numberOfTheShipPart: ', numberOfTheShipPart);
-    // console.log('shipSize ', shipSize);
+function addShipsIntoCells() { //* 2
     //TODO: conditions for the invalid drop cells
     if (invalidCellsAtTheEnd()) return
     if (invalidCellsAtTheStart()) return
